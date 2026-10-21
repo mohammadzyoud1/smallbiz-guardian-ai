@@ -1,0 +1,12 @@
+# opening_cash_balance=5000
+# minimum_cash_cushion=2000
+# currency=USD
+# business_name=Example Taqueria
+date,type,category,amount,note,recurring
+2026-01-01,expense,rent,1800.00,January rent,yes
+2026-01-02,sale,sales,420.50,Daily sales,no
+2026-01-03,sale,sales,515.00,Daily sales,no
+2026-01-04,expense,supplies,230.75,Food supplies,no
+2026-01-05,sale,sales,610.25,Daily sales,no
+2026-01-10,expense,payroll,1200.00,Staff pay,yes
+2026-01-12,expense,utilities,145.30,Electric bill,yes
