@@ -1,6 +1,6 @@
 import pandas as pd
 
-path = "data/templates/template_v1_example.csv"
+path = "data/synthetic/taqueria.csv"
 
 # Settings: the lines that start with "#"
 settings = {}

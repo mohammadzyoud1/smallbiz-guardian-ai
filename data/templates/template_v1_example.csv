@@ -1,7 +1,7 @@
 # opening_cash_balance=5000
 # minimum_cash_cushion=2000
 # currency=USD
-# business_name=Example Taqueria
+# business_name= name 
 date,type,category,amount,note,recurring
 2026-01-01,expense,rent,1800.00,January rent,yes
 2026-01-02,sale,sales,420.50,Daily sales,no
