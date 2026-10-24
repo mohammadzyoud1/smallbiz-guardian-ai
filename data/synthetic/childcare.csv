@@ -1,0 +1,116 @@
+# opening_cash_balance=6000
+# minimum_cash_cushion=8000
+# currency=USD
+# business_name=childcare 
+date,type,category,amount,note,recurring
+2025-01-01,expense,rent,2400,Monthly rent,yes
+2025-01-01,expense,payroll,3200,Staff pay,yes
+2025-01-01,sale,sales,9100,Monthly tuition,yes
+2025-01-09,sale,other_income,2800,State subsidy payment,no
+2025-01-15,expense,utilities,400,Utilities,yes
+2025-01-15,expense,payroll,3200,Staff pay,yes
+2025-01-29,expense,payroll,3200,Staff pay,yes
+2025-02-01,expense,rent,2400,Monthly rent,yes
+2025-02-01,sale,sales,9100,Monthly tuition,yes
+2025-02-12,expense,payroll,3200,Staff pay,yes
+2025-02-15,expense,utilities,400,Utilities,yes
+2025-02-19,sale,other_income,2800,State subsidy payment,no
+2025-02-26,expense,payroll,3200,Staff pay,yes
+2025-03-01,sale,sales,9100,Monthly tuition,yes
+2025-03-01,expense,rent,2400,Monthly rent,yes
+2025-03-12,expense,payroll,3200,Staff pay,yes
+2025-03-15,expense,utilities,400,Utilities,yes
+2025-03-17,sale,other_income,2800,State subsidy payment,no
+2025-03-26,expense,payroll,3200,Staff pay,yes
+2025-04-01,sale,sales,9100,Monthly tuition,yes
+2025-04-01,expense,rent,2400,Monthly rent,yes
+2025-04-09,expense,payroll,3200,Staff pay,yes
+2025-04-14,sale,other_income,2800,State subsidy payment,no
+2025-04-15,expense,utilities,400,Utilities,yes
+2025-04-23,expense,payroll,3200,Staff pay,yes
+2025-05-01,sale,sales,9100,Monthly tuition,yes
+2025-05-01,expense,rent,2400,Monthly rent,yes
+2025-05-07,expense,payroll,3200,Staff pay,yes
+2025-05-14,sale,other_income,2800,State subsidy payment,no
+2025-05-15,expense,utilities,400,Utilities,yes
+2025-05-21,expense,payroll,3200,Staff pay,yes
+2025-06-01,expense,rent,2400,Monthly rent,yes
+2025-06-01,sale,sales,7150,Monthly tuition,yes
+2025-06-04,expense,payroll,3200,Staff pay,yes
+2025-06-15,expense,utilities,400,Utilities,yes
+2025-06-18,expense,payroll,3200,Staff pay,yes
+2025-06-20,sale,other_income,2800,State subsidy payment,no
+2025-07-01,sale,sales,7150,Monthly tuition,yes
+2025-07-01,expense,rent,2400,Monthly rent,yes
+2025-07-02,expense,payroll,3200,Staff pay,yes
+2025-07-09,sale,other_income,2800,State subsidy payment,no
+2025-07-15,expense,utilities,400,Utilities,yes
+2025-07-16,expense,payroll,3200,Staff pay,yes
+2025-07-30,expense,payroll,3200,Staff pay,yes
+2025-08-01,sale,sales,7150,Monthly tuition,yes
+2025-08-01,expense,rent,2400,Monthly rent,yes
+2025-08-13,expense,payroll,3200,Staff pay,yes
+2025-08-15,expense,utilities,400,Utilities,yes
+2025-08-27,expense,payroll,3200,Staff pay,yes
+2025-09-01,expense,rent,2400,Monthly rent,yes
+2025-09-01,sale,sales,9100,Monthly tuition,yes
+2025-09-10,expense,payroll,3200,Staff pay,yes
+2025-09-11,sale,other_income,2800,State subsidy payment,no
+2025-09-15,expense,utilities,400,Utilities,yes
+2025-09-24,expense,payroll,3200,Staff pay,yes
+2025-09-29,sale,other_income,2800,State subsidy payment,no
+2025-10-01,sale,sales,9100,Monthly tuition,yes
+2025-10-01,expense,rent,2400,Monthly rent,yes
+2025-10-08,expense,payroll,3200,Staff pay,yes
+2025-10-09,sale,other_income,2800,State subsidy payment,no
+2025-10-15,expense,utilities,400,Utilities,yes
+2025-10-22,expense,payroll,3200,Staff pay,yes
+2025-11-01,sale,sales,9100,Monthly tuition,yes
+2025-11-01,expense,rent,2400,Monthly rent,yes
+2025-11-05,expense,payroll,3200,Staff pay,yes
+2025-11-15,sale,other_income,2800,State subsidy payment,no
+2025-11-15,expense,utilities,400,Utilities,yes
+2025-11-19,expense,payroll,3200,Staff pay,yes
+2025-12-01,expense,rent,2400,Monthly rent,yes
+2025-12-01,sale,sales,9100,Monthly tuition,yes
+2025-12-03,expense,payroll,3200,Staff pay,yes
+2025-12-15,expense,utilities,400,Utilities,yes
+2025-12-17,expense,payroll,3200,Staff pay,yes
+2025-12-22,sale,other_income,2800,State subsidy payment,no
+2025-12-31,expense,payroll,3200,Staff pay,yes
+2026-01-01,sale,sales,8450,Monthly tuition,yes
+2026-01-01,expense,rent,2400,Monthly rent,yes
+2026-01-14,expense,payroll,3200,Staff pay,yes
+2026-01-15,expense,utilities,400,Utilities,yes
+2026-01-19,sale,other_income,2800,State subsidy payment,no
+2026-01-28,expense,payroll,3200,Staff pay,yes
+2026-02-01,sale,sales,8450,Monthly tuition,yes
+2026-02-01,expense,rent,2400,Monthly rent,yes
+2026-02-11,expense,payroll,3200,Staff pay,yes
+2026-02-15,expense,utilities,400,Utilities,yes
+2026-02-19,sale,other_income,2800,State subsidy payment,no
+2026-02-25,expense,payroll,3200,Staff pay,yes
+2026-03-01,sale,sales,8450,Monthly tuition,yes
+2026-03-01,expense,rent,2400,Monthly rent,yes
+2026-03-11,expense,payroll,3200,Staff pay,yes
+2026-03-15,expense,utilities,400,Utilities,yes
+2026-03-18,sale,other_income,2800,State subsidy payment,no
+2026-03-25,expense,payroll,3200,Staff pay,yes
+2026-04-01,sale,sales,8450,Monthly tuition,yes
+2026-04-01,expense,rent,2400,Monthly rent,yes
+2026-04-08,expense,payroll,3200,Staff pay,yes
+2026-04-15,expense,utilities,400,Utilities,yes
+2026-04-19,sale,other_income,2800,State subsidy payment,no
+2026-04-22,expense,payroll,3200,Staff pay,yes
+2026-05-01,sale,sales,8450,Monthly tuition,yes
+2026-05-01,expense,rent,2400,Monthly rent,yes
+2026-05-06,expense,payroll,3200,Staff pay,yes
+2026-05-15,sale,other_income,2800,State subsidy payment,no
+2026-05-15,expense,utilities,400,Utilities,yes
+2026-05-20,expense,payroll,3200,Staff pay,yes
+2026-06-01,sale,sales,6500,Monthly tuition,yes
+2026-06-01,expense,rent,2400,Monthly rent,yes
+2026-06-03,expense,payroll,3200,Staff pay,yes
+2026-06-09,sale,other_income,2800,State subsidy payment,no
+2026-06-15,expense,utilities,400,Utilities,yes
+2026-06-17,expense,payroll,3200,Staff pay,yes

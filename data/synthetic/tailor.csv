@@ -1,0 +1,714 @@
+# opening_cash_balance=5000
+# minimum_cash_cushion=4500
+# currency=USD
+# business_name=tailor 
+date,type,category,amount,note,recurring
+2025-01-01,sale,sales,357.63,Daily sales,no
+2025-01-01,expense,payroll,2400.0,Staff pay,yes
+2025-01-01,expense,rent,1700.0,Monthly rent,yes
+2025-01-02,sale,sales,320.72,Daily sales,no
+2025-01-03,sale,sales,507.33,Daily sales,no
+2025-01-04,sale,sales,607.06,Daily sales,no
+2025-01-05,sale,sales,134.4,Daily sales,no
+2025-01-06,expense,supplies,428.28,Fabric and thread,no
+2025-01-06,sale,sales,244.62,Daily sales,no
+2025-01-07,sale,sales,348.56,Daily sales,no
+2025-01-08,sale,sales,325.78,Daily sales,no
+2025-01-09,sale,sales,379.04,Daily sales,no
+2025-01-10,sale,sales,397.65,Daily sales,no
+2025-01-11,sale,sales,602.18,Daily sales,no
+2025-01-12,sale,sales,212.17,Daily sales,no
+2025-01-13,sale,sales,307.01,Daily sales,no
+2025-01-13,expense,supplies,524.35,Fabric and thread,no
+2025-01-14,sale,sales,399.83,Daily sales,no
+2025-01-15,sale,sales,365.98,Daily sales,no
+2025-01-15,expense,payroll,2400.0,Staff pay,yes
+2025-01-15,expense,utilities,250.0,Utilities,yes
+2025-01-15,expense,equipment,100.14,Small equipment,no
+2025-01-16,sale,sales,331.02,Daily sales,no
+2025-01-17,sale,sales,481.22,Daily sales,no
+2025-01-18,sale,sales,455.48,Daily sales,no
+2025-01-19,sale,sales,215.04,Daily sales,no
+2025-01-20,expense,supplies,582.1,Fabric and thread,no
+2025-01-20,sale,sales,301.72,Daily sales,no
+2025-01-21,sale,sales,332.52,Daily sales,no
+2025-01-22,sale,sales,307.07,Daily sales,no
+2025-01-23,sale,sales,449.68,Daily sales,no
+2025-01-24,sale,sales,445.43,Daily sales,no
+2025-01-25,sale,sales,497.82,Daily sales,no
+2025-01-26,sale,sales,179.96,Daily sales,no
+2025-01-27,sale,sales,328.27,Daily sales,no
+2025-01-27,expense,supplies,571.45,Fabric and thread,no
+2025-01-28,sale,sales,360.75,Daily sales,no
+2025-01-29,sale,sales,363.17,Daily sales,no
+2025-01-29,expense,payroll,2400.0,Staff pay,yes
+2025-01-30,sale,sales,404.56,Daily sales,no
+2025-01-31,sale,sales,602.49,Daily sales,no
+2025-02-01,expense,rent,1700.0,Monthly rent,yes
+2025-02-01,sale,sales,349.7,Daily sales,no
+2025-02-02,sale,sales,122.78,Daily sales,no
+2025-02-03,sale,sales,186.82,Daily sales,no
+2025-02-03,expense,supplies,567.7,Fabric and thread,no
+2025-02-04,sale,sales,261.52,Daily sales,no
+2025-02-05,sale,sales,279.94,Daily sales,no
+2025-02-06,sale,sales,261.45,Daily sales,no
+2025-02-07,sale,sales,278.97,Daily sales,no
+2025-02-08,sale,sales,326.34,Daily sales,no
+2025-02-09,sale,sales,145.98,Daily sales,no
+2025-02-10,sale,sales,236.52,Daily sales,no
+2025-02-10,expense,supplies,393.68,Fabric and thread,no
+2025-02-11,sale,sales,258.9,Daily sales,no
+2025-02-12,expense,payroll,2400.0,Staff pay,yes
+2025-02-12,sale,sales,215.5,Daily sales,no
+2025-02-13,sale,sales,275.26,Daily sales,no
+2025-02-14,sale,sales,324.79,Daily sales,no
+2025-02-15,sale,sales,384.62,Daily sales,no
+2025-02-15,expense,utilities,250.0,Utilities,yes
+2025-02-16,sale,sales,150.39,Daily sales,no
+2025-02-17,expense,supplies,412.13,Fabric and thread,no
+2025-02-17,sale,sales,219.94,Daily sales,no
+2025-02-18,sale,sales,263.78,Daily sales,no
+2025-02-19,sale,sales,241.83,Daily sales,no
+2025-02-20,sale,sales,277.54,Daily sales,no
+2025-02-21,sale,sales,349.43,Daily sales,no
+2025-02-22,sale,sales,291.0,Daily sales,no
+2025-02-23,sale,sales,126.62,Daily sales,no
+2025-02-24,sale,sales,197.79,Daily sales,no
+2025-02-24,expense,supplies,429.06,Fabric and thread,no
+2025-02-25,sale,sales,216.46,Daily sales,no
+2025-02-26,sale,sales,229.52,Daily sales,no
+2025-02-26,expense,payroll,2400.0,Staff pay,yes
+2025-02-27,sale,sales,325.65,Daily sales,no
+2025-02-28,sale,sales,277.74,Daily sales,no
+2025-03-01,sale,sales,609.27,Daily sales,no
+2025-03-01,expense,rent,1700.0,Monthly rent,yes
+2025-03-02,sale,sales,142.04,Daily sales,no
+2025-03-03,expense,supplies,437.75,Fabric and thread,no
+2025-03-03,sale,sales,288.73,Daily sales,no
+2025-03-04,expense,equipment,149.56,Small equipment,no
+2025-03-04,sale,sales,350.35,Daily sales,no
+2025-03-05,sale,sales,372.07,Daily sales,no
+2025-03-06,sale,sales,420.54,Daily sales,no
+2025-03-07,sale,sales,510.26,Daily sales,no
+2025-03-08,sale,sales,504.17,Daily sales,no
+2025-03-09,sale,sales,176.82,Daily sales,no
+2025-03-10,sale,sales,343.12,Daily sales,no
+2025-03-10,expense,supplies,568.19,Fabric and thread,no
+2025-03-11,sale,sales,332.19,Daily sales,no
+2025-03-12,sale,sales,276.56,Daily sales,no
+2025-03-12,expense,payroll,2400.0,Staff pay,yes
+2025-03-13,sale,sales,315.4,Daily sales,no
+2025-03-14,sale,sales,393.11,Daily sales,no
+2025-03-15,expense,utilities,250.0,Utilities,yes
+2025-03-15,sale,sales,571.67,Daily sales,no
+2025-03-16,sale,sales,194.06,Daily sales,no
+2025-03-17,sale,sales,335.49,Daily sales,no
+2025-03-17,expense,supplies,513.63,Fabric and thread,no
+2025-03-18,sale,sales,320.08,Daily sales,no
+2025-03-19,sale,sales,350.13,Daily sales,no
+2025-03-20,sale,sales,415.66,Daily sales,no
+2025-03-21,sale,sales,434.84,Daily sales,no
+2025-03-22,sale,sales,568.45,Daily sales,no
+2025-03-23,sale,sales,171.14,Daily sales,no
+2025-03-24,sale,sales,287.44,Daily sales,no
+2025-03-24,expense,supplies,541.6,Fabric and thread,no
+2025-03-25,sale,sales,322.42,Daily sales,no
+2025-03-26,expense,payroll,2400.0,Staff pay,yes
+2025-03-26,sale,sales,280.65,Daily sales,no
+2025-03-27,sale,sales,407.76,Daily sales,no
+2025-03-28,sale,sales,423.89,Daily sales,no
+2025-03-29,sale,sales,533.0,Daily sales,no
+2025-03-30,sale,sales,203.7,Daily sales,no
+2025-03-31,sale,sales,324.36,Daily sales,no
+2025-03-31,expense,supplies,507.29,Fabric and thread,no
+2025-04-01,expense,rent,1700.0,Monthly rent,yes
+2025-04-01,sale,sales,376.13,Daily sales,no
+2025-04-02,sale,sales,336.95,Daily sales,no
+2025-04-03,sale,sales,355.87,Daily sales,no
+2025-04-04,sale,sales,450.55,Daily sales,no
+2025-04-05,sale,sales,397.35,Daily sales,no
+2025-04-06,sale,sales,148.76,Daily sales,no
+2025-04-07,sale,sales,243.68,Daily sales,no
+2025-04-07,expense,supplies,502.43,Fabric and thread,no
+2025-04-08,sale,sales,290.84,Daily sales,no
+2025-04-09,expense,payroll,2400.0,Staff pay,yes
+2025-04-09,sale,sales,362.51,Daily sales,no
+2025-04-10,sale,sales,328.39,Daily sales,no
+2025-04-11,sale,sales,430.13,Daily sales,no
+2025-04-12,sale,sales,635.68,Daily sales,no
+2025-04-13,sale,sales,179.85,Daily sales,no
+2025-04-14,sale,sales,337.63,Daily sales,no
+2025-04-14,expense,supplies,541.72,Fabric and thread,no
+2025-04-15,expense,utilities,250.0,Utilities,yes
+2025-04-15,sale,sales,294.11,Daily sales,no
+2025-04-16,sale,sales,331.46,Daily sales,no
+2025-04-17,sale,sales,325.85,Daily sales,no
+2025-04-18,sale,sales,432.81,Daily sales,no
+2025-04-19,sale,sales,599.06,Daily sales,no
+2025-04-20,sale,sales,140.77,Daily sales,no
+2025-04-21,sale,sales,323.81,Daily sales,no
+2025-04-21,expense,supplies,550.62,Fabric and thread,no
+2025-04-22,sale,sales,354.2,Daily sales,no
+2025-04-23,sale,sales,311.52,Daily sales,no
+2025-04-23,expense,payroll,2400.0,Staff pay,yes
+2025-04-24,sale,sales,297.57,Daily sales,no
+2025-04-25,sale,sales,460.93,Daily sales,no
+2025-04-26,sale,sales,489.75,Daily sales,no
+2025-04-27,sale,sales,196.63,Daily sales,no
+2025-04-28,expense,supplies,536.94,Fabric and thread,no
+2025-04-28,sale,sales,305.0,Daily sales,no
+2025-04-29,sale,sales,424.17,Daily sales,no
+2025-04-30,sale,sales,329.72,Daily sales,no
+2025-05-01,sale,sales,321.66,Daily sales,no
+2025-05-01,expense,rent,1700.0,Monthly rent,yes
+2025-05-02,sale,sales,468.26,Daily sales,no
+2025-05-03,sale,sales,549.56,Daily sales,no
+2025-05-04,sale,sales,228.74,Daily sales,no
+2025-05-05,sale,sales,342.08,Daily sales,no
+2025-05-05,expense,supplies,555.84,Fabric and thread,no
+2025-05-06,sale,sales,360.31,Daily sales,no
+2025-05-07,sale,sales,417.07,Daily sales,no
+2025-05-07,expense,payroll,2400.0,Staff pay,yes
+2025-05-08,sale,sales,312.24,Daily sales,no
+2025-05-09,sale,sales,412.24,Daily sales,no
+2025-05-10,sale,sales,458.06,Daily sales,no
+2025-05-11,sale,sales,178.89,Daily sales,no
+2025-05-12,expense,supplies,570.36,Fabric and thread,no
+2025-05-12,sale,sales,241.22,Daily sales,no
+2025-05-13,sale,sales,374.58,Daily sales,no
+2025-05-14,sale,sales,330.6,Daily sales,no
+2025-05-15,sale,sales,296.16,Daily sales,no
+2025-05-15,expense,utilities,250.0,Utilities,yes
+2025-05-16,sale,sales,386.53,Daily sales,no
+2025-05-17,expense,equipment,83.77,Small equipment,no
+2025-05-17,sale,sales,557.02,Daily sales,no
+2025-05-18,sale,sales,213.89,Daily sales,no
+2025-05-19,sale,sales,395.05,Daily sales,no
+2025-05-19,expense,supplies,547.52,Fabric and thread,no
+2025-05-20,sale,sales,491.48,Daily sales,no
+2025-05-21,sale,sales,363.26,Daily sales,no
+2025-05-21,expense,payroll,2400.0,Staff pay,yes
+2025-05-22,sale,sales,323.6,Daily sales,no
+2025-05-23,sale,sales,310.17,Daily sales,no
+2025-05-24,sale,sales,553.36,Daily sales,no
+2025-05-25,sale,sales,166.83,Daily sales,no
+2025-05-26,expense,supplies,568.25,Fabric and thread,no
+2025-05-26,sale,sales,285.06,Daily sales,no
+2025-05-27,sale,sales,310.6,Daily sales,no
+2025-05-28,sale,sales,334.78,Daily sales,no
+2025-05-29,sale,sales,440.76,Daily sales,no
+2025-05-30,sale,sales,466.74,Daily sales,no
+2025-05-31,sale,sales,519.34,Daily sales,no
+2025-06-01,sale,sales,160.48,Daily sales,no
+2025-06-01,expense,rent,1700.0,Monthly rent,yes
+2025-06-02,expense,supplies,535.82,Fabric and thread,no
+2025-06-02,sale,sales,227.63,Daily sales,no
+2025-06-03,sale,sales,317.05,Daily sales,no
+2025-06-04,expense,payroll,2400.0,Staff pay,yes
+2025-06-04,sale,sales,339.24,Daily sales,no
+2025-06-05,sale,sales,480.77,Daily sales,no
+2025-06-06,sale,sales,464.91,Daily sales,no
+2025-06-07,sale,sales,610.42,Daily sales,no
+2025-06-08,sale,sales,175.77,Daily sales,no
+2025-06-09,sale,sales,249.97,Daily sales,no
+2025-06-09,expense,supplies,591.25,Fabric and thread,no
+2025-06-10,expense,equipment,900.0,Sewing machine replacement,no
+2025-06-10,sale,sales,292.49,Daily sales,no
+2025-06-11,sale,sales,304.8,Daily sales,no
+2025-06-12,sale,sales,501.32,Daily sales,no
+2025-06-13,sale,sales,399.82,Daily sales,no
+2025-06-14,sale,sales,598.91,Daily sales,no
+2025-06-15,sale,sales,164.27,Daily sales,no
+2025-06-15,expense,utilities,250.0,Utilities,yes
+2025-06-16,expense,supplies,557.74,Fabric and thread,no
+2025-06-16,sale,sales,346.48,Daily sales,no
+2025-06-17,sale,sales,361.75,Daily sales,no
+2025-06-18,expense,payroll,2400.0,Staff pay,yes
+2025-06-18,sale,sales,333.96,Daily sales,no
+2025-06-19,sale,sales,377.68,Daily sales,no
+2025-06-20,sale,sales,411.21,Daily sales,no
+2025-06-21,sale,sales,567.6,Daily sales,no
+2025-06-22,sale,sales,177.03,Daily sales,no
+2025-06-23,expense,supplies,525.63,Fabric and thread,no
+2025-06-23,sale,sales,248.11,Daily sales,no
+2025-06-24,sale,sales,276.44,Daily sales,no
+2025-06-25,sale,sales,350.85,Daily sales,no
+2025-06-26,sale,sales,470.01,Daily sales,no
+2025-06-27,sale,sales,466.94,Daily sales,no
+2025-06-28,sale,sales,522.53,Daily sales,no
+2025-06-29,sale,sales,198.15,Daily sales,no
+2025-06-30,expense,supplies,555.37,Fabric and thread,no
+2025-06-30,sale,sales,363.55,Daily sales,no
+2025-07-01,expense,rent,1700.0,Monthly rent,yes
+2025-07-01,sale,sales,353.25,Daily sales,no
+2025-07-02,expense,payroll,2400.0,Staff pay,yes
+2025-07-02,sale,sales,320.92,Daily sales,no
+2025-07-03,sale,sales,443.06,Daily sales,no
+2025-07-04,sale,sales,485.33,Daily sales,no
+2025-07-05,sale,sales,654.55,Daily sales,no
+2025-07-06,sale,sales,195.22,Daily sales,no
+2025-07-07,sale,sales,248.16,Daily sales,no
+2025-07-07,expense,supplies,627.61,Fabric and thread,no
+2025-07-08,sale,sales,271.81,Daily sales,no
+2025-07-09,sale,sales,426.69,Daily sales,no
+2025-07-10,sale,sales,478.25,Daily sales,no
+2025-07-11,sale,sales,443.72,Daily sales,no
+2025-07-12,sale,sales,501.42,Daily sales,no
+2025-07-13,sale,sales,231.65,Daily sales,no
+2025-07-14,sale,sales,253.52,Daily sales,no
+2025-07-14,expense,supplies,546.63,Fabric and thread,no
+2025-07-15,sale,sales,296.1,Daily sales,no
+2025-07-15,expense,utilities,250.0,Utilities,yes
+2025-07-16,expense,payroll,2400.0,Staff pay,yes
+2025-07-16,sale,sales,375.0,Daily sales,no
+2025-07-17,sale,sales,357.51,Daily sales,no
+2025-07-18,expense,equipment,145.28,Small equipment,no
+2025-07-18,sale,sales,455.65,Daily sales,no
+2025-07-19,sale,sales,518.96,Daily sales,no
+2025-07-20,sale,sales,199.62,Daily sales,no
+2025-07-21,sale,sales,368.18,Daily sales,no
+2025-07-21,expense,supplies,545.53,Fabric and thread,no
+2025-07-22,sale,sales,346.65,Daily sales,no
+2025-07-23,sale,sales,375.03,Daily sales,no
+2025-07-24,sale,sales,263.14,Daily sales,no
+2025-07-25,sale,sales,452.67,Daily sales,no
+2025-07-26,sale,sales,464.71,Daily sales,no
+2025-07-27,sale,sales,155.26,Daily sales,no
+2025-07-28,sale,sales,263.96,Daily sales,no
+2025-07-28,expense,supplies,494.82,Fabric and thread,no
+2025-07-29,sale,sales,324.86,Daily sales,no
+2025-07-30,expense,payroll,2400.0,Staff pay,yes
+2025-07-30,sale,sales,388.99,Daily sales,no
+2025-07-31,sale,sales,304.4,Daily sales,no
+2025-08-01,sale,sales,572.62,Daily sales,no
+2025-08-01,expense,rent,1700.0,Monthly rent,yes
+2025-08-02,sale,sales,616.7,Daily sales,no
+2025-08-03,sale,sales,225.83,Daily sales,no
+2025-08-04,sale,sales,437.16,Daily sales,no
+2025-08-04,expense,supplies,633.07,Fabric and thread,no
+2025-08-05,sale,sales,462.01,Daily sales,no
+2025-08-06,sale,sales,513.26,Daily sales,no
+2025-08-07,sale,sales,463.99,Daily sales,no
+2025-08-08,sale,sales,510.5,Daily sales,no
+2025-08-09,sale,sales,642.67,Daily sales,no
+2025-08-10,sale,sales,246.14,Daily sales,no
+2025-08-11,sale,sales,390.06,Daily sales,no
+2025-08-11,expense,supplies,765.63,Fabric and thread,no
+2025-08-12,sale,sales,357.96,Daily sales,no
+2025-08-13,expense,payroll,2400.0,Staff pay,yes
+2025-08-13,sale,sales,433.3,Daily sales,no
+2025-08-14,sale,sales,491.26,Daily sales,no
+2025-08-15,expense,utilities,250.0,Utilities,yes
+2025-08-15,sale,sales,785.24,Daily sales,no
+2025-08-16,sale,sales,852.22,Daily sales,no
+2025-08-17,sale,sales,207.1,Daily sales,no
+2025-08-18,sale,sales,363.62,Daily sales,no
+2025-08-18,expense,supplies,764.0,Fabric and thread,no
+2025-08-19,sale,sales,333.66,Daily sales,no
+2025-08-20,sale,sales,389.62,Daily sales,no
+2025-08-21,sale,sales,497.49,Daily sales,no
+2025-08-22,sale,sales,673.1,Daily sales,no
+2025-08-23,sale,sales,592.27,Daily sales,no
+2025-08-24,sale,sales,214.2,Daily sales,no
+2025-08-25,sale,sales,257.6,Daily sales,no
+2025-08-25,expense,supplies,686.32,Fabric and thread,no
+2025-08-26,sale,sales,417.07,Daily sales,no
+2025-08-27,expense,payroll,2400.0,Staff pay,yes
+2025-08-27,sale,sales,359.37,Daily sales,no
+2025-08-28,sale,sales,437.28,Daily sales,no
+2025-08-29,sale,sales,495.03,Daily sales,no
+2025-08-30,sale,sales,655.6,Daily sales,no
+2025-08-31,sale,sales,174.88,Daily sales,no
+2025-09-01,expense,rent,1700.0,Monthly rent,yes
+2025-09-01,expense,supplies,541.16,Fabric and thread,no
+2025-09-01,sale,sales,272.67,Daily sales,no
+2025-09-02,sale,sales,518.91,Daily sales,no
+2025-09-03,sale,sales,317.35,Daily sales,no
+2025-09-04,sale,sales,365.11,Daily sales,no
+2025-09-05,sale,sales,668.89,Daily sales,no
+2025-09-06,sale,sales,878.4,Daily sales,no
+2025-09-07,sale,sales,180.1,Daily sales,no
+2025-09-08,expense,supplies,663.59,Fabric and thread,no
+2025-09-08,sale,sales,330.29,Daily sales,no
+2025-09-09,sale,sales,413.45,Daily sales,no
+2025-09-10,sale,sales,495.28,Daily sales,no
+2025-09-10,expense,payroll,2400.0,Staff pay,yes
+2025-09-11,sale,sales,372.31,Daily sales,no
+2025-09-12,sale,sales,505.11,Daily sales,no
+2025-09-13,sale,sales,683.14,Daily sales,no
+2025-09-14,sale,sales,232.75,Daily sales,no
+2025-09-15,expense,utilities,250.0,Utilities,yes
+2025-09-15,expense,supplies,657.31,Fabric and thread,no
+2025-09-15,expense,equipment,145.33,Small equipment,no
+2025-09-15,sale,sales,329.87,Daily sales,no
+2025-09-16,sale,sales,385.41,Daily sales,no
+2025-09-17,sale,sales,312.19,Daily sales,no
+2025-09-18,sale,sales,421.39,Daily sales,no
+2025-09-19,sale,sales,503.45,Daily sales,no
+2025-09-20,sale,sales,633.11,Daily sales,no
+2025-09-21,sale,sales,200.3,Daily sales,no
+2025-09-22,expense,supplies,580.01,Fabric and thread,no
+2025-09-22,sale,sales,374.33,Daily sales,no
+2025-09-23,sale,sales,453.05,Daily sales,no
+2025-09-24,sale,sales,402.47,Daily sales,no
+2025-09-24,expense,payroll,2400.0,Staff pay,yes
+2025-09-25,sale,sales,460.06,Daily sales,no
+2025-09-26,sale,sales,528.58,Daily sales,no
+2025-09-27,sale,sales,611.81,Daily sales,no
+2025-09-28,sale,sales,194.85,Daily sales,no
+2025-09-29,sale,sales,366.2,Daily sales,no
+2025-09-29,expense,supplies,689.31,Fabric and thread,no
+2025-09-30,sale,sales,387.56,Daily sales,no
+2025-10-01,expense,rent,1700.0,Monthly rent,yes
+2025-10-01,sale,sales,449.38,Daily sales,no
+2025-10-02,sale,sales,469.68,Daily sales,no
+2025-10-03,sale,sales,482.39,Daily sales,no
+2025-10-04,sale,sales,471.11,Daily sales,no
+2025-10-05,sale,sales,158.3,Daily sales,no
+2025-10-06,expense,supplies,673.8,Fabric and thread,no
+2025-10-06,sale,sales,358.32,Daily sales,no
+2025-10-07,sale,sales,355.48,Daily sales,no
+2025-10-08,expense,payroll,2400.0,Staff pay,yes
+2025-10-08,sale,sales,366.63,Daily sales,no
+2025-10-09,sale,sales,280.56,Daily sales,no
+2025-10-10,sale,sales,519.44,Daily sales,no
+2025-10-11,sale,sales,568.26,Daily sales,no
+2025-10-12,sale,sales,158.35,Daily sales,no
+2025-10-13,sale,sales,282.5,Daily sales,no
+2025-10-13,expense,supplies,539.81,Fabric and thread,no
+2025-10-14,sale,sales,355.53,Daily sales,no
+2025-10-15,expense,utilities,250.0,Utilities,yes
+2025-10-15,sale,sales,344.69,Daily sales,no
+2025-10-16,sale,sales,363.35,Daily sales,no
+2025-10-17,sale,sales,448.92,Daily sales,no
+2025-10-18,sale,sales,511.89,Daily sales,no
+2025-10-19,sale,sales,194.35,Daily sales,no
+2025-10-20,expense,supplies,527.23,Fabric and thread,no
+2025-10-20,sale,sales,371.1,Daily sales,no
+2025-10-21,sale,sales,210.33,Daily sales,no
+2025-10-22,expense,payroll,2400.0,Staff pay,yes
+2025-10-22,sale,sales,329.85,Daily sales,no
+2025-10-23,sale,sales,390.06,Daily sales,no
+2025-10-24,sale,sales,476.25,Daily sales,no
+2025-10-25,sale,sales,502.32,Daily sales,no
+2025-10-26,sale,sales,139.93,Daily sales,no
+2025-10-27,expense,supplies,538.63,Fabric and thread,no
+2025-10-27,sale,sales,318.96,Daily sales,no
+2025-10-28,sale,sales,430.61,Daily sales,no
+2025-10-29,sale,sales,263.31,Daily sales,no
+2025-10-30,sale,sales,429.24,Daily sales,no
+2025-10-31,sale,sales,433.53,Daily sales,no
+2025-11-01,sale,sales,685.24,Daily sales,no
+2025-11-01,expense,rent,1700.0,Monthly rent,yes
+2025-11-02,sale,sales,207.99,Daily sales,no
+2025-11-03,sale,sales,375.37,Daily sales,no
+2025-11-03,expense,supplies,658.22,Fabric and thread,no
+2025-11-04,sale,sales,531.3,Daily sales,no
+2025-11-05,sale,sales,483.46,Daily sales,no
+2025-11-05,expense,payroll,2400.0,Staff pay,yes
+2025-11-06,sale,sales,622.36,Daily sales,no
+2025-11-07,sale,sales,697.5,Daily sales,no
+2025-11-08,sale,sales,737.15,Daily sales,no
+2025-11-09,sale,sales,311.61,Daily sales,no
+2025-11-10,sale,sales,421.22,Daily sales,no
+2025-11-10,expense,supplies,776.38,Fabric and thread,no
+2025-11-11,sale,sales,499.82,Daily sales,no
+2025-11-11,expense,equipment,89.89,Small equipment,no
+2025-11-12,sale,sales,424.82,Daily sales,no
+2025-11-13,sale,sales,498.93,Daily sales,no
+2025-11-14,sale,sales,530.79,Daily sales,no
+2025-11-15,expense,utilities,250.0,Utilities,yes
+2025-11-15,sale,sales,794.26,Daily sales,no
+2025-11-16,sale,sales,203.34,Daily sales,no
+2025-11-17,expense,supplies,751.34,Fabric and thread,no
+2025-11-17,sale,sales,441.58,Daily sales,no
+2025-11-18,sale,sales,431.89,Daily sales,no
+2025-11-19,expense,payroll,2400.0,Staff pay,yes
+2025-11-19,sale,sales,522.71,Daily sales,no
+2025-11-20,sale,sales,549.64,Daily sales,no
+2025-11-21,sale,sales,754.69,Daily sales,no
+2025-11-22,sale,sales,767.41,Daily sales,no
+2025-11-23,sale,sales,188.76,Daily sales,no
+2025-11-24,sale,sales,391.23,Daily sales,no
+2025-11-24,expense,supplies,877.73,Fabric and thread,no
+2025-11-25,sale,sales,366.44,Daily sales,no
+2025-11-26,sale,sales,410.04,Daily sales,no
+2025-11-27,sale,sales,605.98,Daily sales,no
+2025-11-28,sale,sales,649.49,Daily sales,no
+2025-11-29,sale,sales,619.09,Daily sales,no
+2025-11-30,sale,sales,209.44,Daily sales,no
+2025-12-01,sale,sales,427.69,Daily sales,no
+2025-12-01,expense,supplies,656.29,Fabric and thread,no
+2025-12-01,expense,rent,1700.0,Monthly rent,yes
+2025-12-02,sale,sales,391.43,Daily sales,no
+2025-12-03,expense,payroll,2400.0,Staff pay,yes
+2025-12-03,sale,sales,430.6,Daily sales,no
+2025-12-04,sale,sales,556.9,Daily sales,no
+2025-12-05,sale,sales,749.03,Daily sales,no
+2025-12-06,sale,sales,812.81,Daily sales,no
+2025-12-07,sale,sales,174.58,Daily sales,no
+2025-12-08,expense,supplies,729.54,Fabric and thread,no
+2025-12-08,sale,sales,445.03,Daily sales,no
+2025-12-09,sale,sales,483.97,Daily sales,no
+2025-12-10,sale,sales,508.53,Daily sales,no
+2025-12-11,sale,sales,660.97,Daily sales,no
+2025-12-12,sale,sales,440.82,Daily sales,no
+2025-12-13,sale,sales,678.76,Daily sales,no
+2025-12-14,sale,sales,289.58,Daily sales,no
+2025-12-15,expense,supplies,755.34,Fabric and thread,no
+2025-12-15,expense,utilities,250.0,Utilities,yes
+2025-12-15,sale,sales,324.63,Daily sales,no
+2025-12-16,sale,sales,584.8,Daily sales,no
+2025-12-17,sale,sales,505.26,Daily sales,no
+2025-12-17,expense,payroll,2400.0,Staff pay,yes
+2025-12-18,sale,sales,599.56,Daily sales,no
+2025-12-19,sale,sales,583.73,Daily sales,no
+2025-12-20,sale,sales,835.71,Daily sales,no
+2025-12-21,sale,sales,308.63,Daily sales,no
+2025-12-22,expense,supplies,801.88,Fabric and thread,no
+2025-12-22,sale,sales,440.47,Daily sales,no
+2025-12-23,sale,sales,495.63,Daily sales,no
+2025-12-24,sale,sales,498.22,Daily sales,no
+2025-12-25,sale,sales,463.11,Daily sales,no
+2025-12-26,sale,sales,624.27,Daily sales,no
+2025-12-27,sale,sales,727.76,Daily sales,no
+2025-12-28,sale,sales,281.3,Daily sales,no
+2025-12-29,expense,supplies,808.33,Fabric and thread,no
+2025-12-29,sale,sales,489.43,Daily sales,no
+2025-12-30,sale,sales,402.78,Daily sales,no
+2025-12-31,expense,payroll,2400.0,Staff pay,yes
+2025-12-31,sale,sales,469.82,Daily sales,no
+2026-01-01,expense,rent,1700.0,Monthly rent,yes
+2026-01-01,sale,sales,464.44,Daily sales,no
+2026-01-02,sale,sales,405.14,Daily sales,no
+2026-01-03,sale,sales,466.38,Daily sales,no
+2026-01-04,sale,sales,195.77,Daily sales,no
+2026-01-05,expense,supplies,644.32,Fabric and thread,no
+2026-01-05,sale,sales,342.5,Daily sales,no
+2026-01-06,sale,sales,342.59,Daily sales,no
+2026-01-07,sale,sales,410.18,Daily sales,no
+2026-01-08,sale,sales,428.84,Daily sales,no
+2026-01-09,sale,sales,513.58,Daily sales,no
+2026-01-10,sale,sales,576.22,Daily sales,no
+2026-01-11,sale,sales,256.34,Daily sales,no
+2026-01-12,sale,sales,294.64,Daily sales,no
+2026-01-12,expense,supplies,575.41,Fabric and thread,no
+2026-01-13,sale,sales,239.22,Daily sales,no
+2026-01-14,sale,sales,424.3,Daily sales,no
+2026-01-14,expense,payroll,2400.0,Staff pay,yes
+2026-01-15,sale,sales,353.91,Daily sales,no
+2026-01-15,expense,utilities,250.0,Utilities,yes
+2026-01-16,sale,sales,463.38,Daily sales,no
+2026-01-17,sale,sales,636.5,Daily sales,no
+2026-01-18,sale,sales,144.34,Daily sales,no
+2026-01-19,sale,sales,246.92,Daily sales,no
+2026-01-19,expense,supplies,576.88,Fabric and thread,no
+2026-01-19,expense,equipment,99.69,Small equipment,no
+2026-01-20,sale,sales,259.85,Daily sales,no
+2026-01-21,sale,sales,301.26,Daily sales,no
+2026-01-22,sale,sales,405.06,Daily sales,no
+2026-01-23,sale,sales,491.85,Daily sales,no
+2026-01-24,sale,sales,554.05,Daily sales,no
+2026-01-25,sale,sales,149.74,Daily sales,no
+2026-01-26,sale,sales,198.66,Daily sales,no
+2026-01-26,expense,supplies,514.62,Fabric and thread,no
+2026-01-27,sale,sales,344.79,Daily sales,no
+2026-01-28,expense,payroll,2400.0,Staff pay,yes
+2026-01-28,sale,sales,317.8,Daily sales,no
+2026-01-29,sale,sales,406.18,Daily sales,no
+2026-01-30,sale,sales,504.01,Daily sales,no
+2026-01-31,sale,sales,543.03,Daily sales,no
+2026-02-01,expense,rent,1700.0,Monthly rent,yes
+2026-02-01,sale,sales,148.16,Daily sales,no
+2026-02-02,sale,sales,220.12,Daily sales,no
+2026-02-02,expense,supplies,576.3,Fabric and thread,no
+2026-02-03,sale,sales,258.43,Daily sales,no
+2026-02-04,sale,sales,214.1,Daily sales,no
+2026-02-05,sale,sales,258.83,Daily sales,no
+2026-02-06,sale,sales,328.62,Daily sales,no
+2026-02-07,sale,sales,418.23,Daily sales,no
+2026-02-08,sale,sales,125.14,Daily sales,no
+2026-02-09,sale,sales,229.44,Daily sales,no
+2026-02-09,expense,supplies,388.58,Fabric and thread,no
+2026-02-10,sale,sales,229.85,Daily sales,no
+2026-02-11,expense,payroll,2400.0,Staff pay,yes
+2026-02-11,sale,sales,235.18,Daily sales,no
+2026-02-12,sale,sales,299.1,Daily sales,no
+2026-02-13,sale,sales,223.77,Daily sales,no
+2026-02-14,sale,sales,299.98,Daily sales,no
+2026-02-15,expense,utilities,250.0,Utilities,yes
+2026-02-15,sale,sales,103.43,Daily sales,no
+2026-02-16,expense,supplies,345.22,Fabric and thread,no
+2026-02-16,sale,sales,138.31,Daily sales,no
+2026-02-17,sale,sales,215.04,Daily sales,no
+2026-02-18,sale,sales,266.31,Daily sales,no
+2026-02-19,sale,sales,254.63,Daily sales,no
+2026-02-20,sale,sales,328.67,Daily sales,no
+2026-02-21,sale,sales,433.24,Daily sales,no
+2026-02-22,sale,sales,159.49,Daily sales,no
+2026-02-23,expense,supplies,405.74,Fabric and thread,no
+2026-02-23,sale,sales,210.59,Daily sales,no
+2026-02-24,sale,sales,288.01,Daily sales,no
+2026-02-25,expense,payroll,2400.0,Staff pay,yes
+2026-02-25,sale,sales,242.71,Daily sales,no
+2026-02-26,sale,sales,232.59,Daily sales,no
+2026-02-27,sale,sales,290.74,Daily sales,no
+2026-02-28,sale,sales,289.7,Daily sales,no
+2026-03-01,sale,sales,164.69,Daily sales,no
+2026-03-01,expense,rent,1700.0,Monthly rent,yes
+2026-03-02,sale,sales,287.67,Daily sales,no
+2026-03-02,expense,supplies,392.61,Fabric and thread,no
+2026-03-03,sale,sales,383.22,Daily sales,no
+2026-03-04,sale,sales,430.28,Daily sales,no
+2026-03-05,sale,sales,301.22,Daily sales,no
+2026-03-06,sale,sales,482.87,Daily sales,no
+2026-03-07,sale,sales,448.96,Daily sales,no
+2026-03-08,sale,sales,203.53,Daily sales,no
+2026-03-09,sale,sales,298.02,Daily sales,no
+2026-03-09,expense,supplies,570.81,Fabric and thread,no
+2026-03-10,sale,sales,248.07,Daily sales,no
+2026-03-11,expense,payroll,2400.0,Staff pay,yes
+2026-03-11,sale,sales,389.62,Daily sales,no
+2026-03-12,sale,sales,345.51,Daily sales,no
+2026-03-13,sale,sales,419.48,Daily sales,no
+2026-03-14,sale,sales,446.63,Daily sales,no
+2026-03-15,sale,sales,171.35,Daily sales,no
+2026-03-15,expense,utilities,250.0,Utilities,yes
+2026-03-16,sale,sales,323.51,Daily sales,no
+2026-03-16,expense,supplies,467.12,Fabric and thread,no
+2026-03-16,expense,equipment,87.48,Small equipment,no
+2026-03-17,sale,sales,332.29,Daily sales,no
+2026-03-18,sale,sales,358.86,Daily sales,no
+2026-03-19,sale,sales,400.63,Daily sales,no
+2026-03-20,sale,sales,546.33,Daily sales,no
+2026-03-21,sale,sales,504.65,Daily sales,no
+2026-03-22,sale,sales,147.91,Daily sales,no
+2026-03-23,sale,sales,352.67,Daily sales,no
+2026-03-23,expense,supplies,590.59,Fabric and thread,no
+2026-03-24,sale,sales,324.99,Daily sales,no
+2026-03-25,expense,payroll,2400.0,Staff pay,yes
+2026-03-25,sale,sales,399.18,Daily sales,no
+2026-03-26,sale,sales,401.85,Daily sales,no
+2026-03-27,sale,sales,447.03,Daily sales,no
+2026-03-28,sale,sales,559.83,Daily sales,no
+2026-03-29,sale,sales,245.6,Daily sales,no
+2026-03-30,sale,sales,398.71,Daily sales,no
+2026-03-30,expense,supplies,569.78,Fabric and thread,no
+2026-03-31,sale,sales,345.56,Daily sales,no
+2026-04-01,sale,sales,350.22,Daily sales,no
+2026-04-01,expense,rent,1700.0,Monthly rent,yes
+2026-04-02,sale,sales,441.35,Daily sales,no
+2026-04-03,sale,sales,398.16,Daily sales,no
+2026-04-04,sale,sales,558.58,Daily sales,no
+2026-04-05,sale,sales,189.26,Daily sales,no
+2026-04-06,expense,supplies,596.95,Fabric and thread,no
+2026-04-06,sale,sales,318.31,Daily sales,no
+2026-04-07,sale,sales,299.25,Daily sales,no
+2026-04-08,sale,sales,260.46,Daily sales,no
+2026-04-08,expense,payroll,2400.0,Staff pay,yes
+2026-04-09,sale,sales,261.84,Daily sales,no
+2026-04-10,sale,sales,379.57,Daily sales,no
+2026-04-11,sale,sales,495.4,Daily sales,no
+2026-04-12,sale,sales,181.64,Daily sales,no
+2026-04-13,sale,sales,392.34,Daily sales,no
+2026-04-13,expense,supplies,448.82,Fabric and thread,no
+2026-04-14,sale,sales,398.74,Daily sales,no
+2026-04-15,sale,sales,292.64,Daily sales,no
+2026-04-15,expense,utilities,250.0,Utilities,yes
+2026-04-16,sale,sales,399.82,Daily sales,no
+2026-04-17,sale,sales,428.16,Daily sales,no
+2026-04-18,sale,sales,509.31,Daily sales,no
+2026-04-19,sale,sales,195.28,Daily sales,no
+2026-04-20,sale,sales,332.23,Daily sales,no
+2026-04-20,expense,supplies,588.43,Fabric and thread,no
+2026-04-21,sale,sales,324.6,Daily sales,no
+2026-04-22,sale,sales,396.58,Daily sales,no
+2026-04-22,expense,payroll,2400.0,Staff pay,yes
+2026-04-23,sale,sales,314.91,Daily sales,no
+2026-04-24,sale,sales,456.43,Daily sales,no
+2026-04-25,sale,sales,739.29,Daily sales,no
+2026-04-26,sale,sales,196.36,Daily sales,no
+2026-04-27,sale,sales,369.35,Daily sales,no
+2026-04-27,expense,supplies,582.8,Fabric and thread,no
+2026-04-28,sale,sales,346.69,Daily sales,no
+2026-04-29,sale,sales,371.79,Daily sales,no
+2026-04-30,sale,sales,376.76,Daily sales,no
+2026-05-01,sale,sales,622.08,Daily sales,no
+2026-05-01,expense,rent,1700.0,Monthly rent,yes
+2026-05-02,sale,sales,657.72,Daily sales,no
+2026-05-03,sale,sales,283.17,Daily sales,no
+2026-05-04,expense,supplies,623.35,Fabric and thread,no
+2026-05-04,sale,sales,371.24,Daily sales,no
+2026-05-05,sale,sales,526.6,Daily sales,no
+2026-05-06,sale,sales,556.75,Daily sales,no
+2026-05-06,expense,payroll,2400.0,Staff pay,yes
+2026-05-07,sale,sales,561.25,Daily sales,no
+2026-05-08,sale,sales,610.99,Daily sales,no
+2026-05-09,sale,sales,795.52,Daily sales,no
+2026-05-10,sale,sales,253.68,Daily sales,no
+2026-05-11,expense,supplies,837.59,Fabric and thread,no
+2026-05-11,sale,sales,485.33,Daily sales,no
+2026-05-12,sale,sales,347.27,Daily sales,no
+2026-05-13,sale,sales,454.7,Daily sales,no
+2026-05-14,sale,sales,373.13,Daily sales,no
+2026-05-15,sale,sales,495.23,Daily sales,no
+2026-05-15,expense,utilities,250.0,Utilities,yes
+2026-05-16,expense,equipment,78.76,Small equipment,no
+2026-05-16,sale,sales,897.17,Daily sales,no
+2026-05-17,sale,sales,301.72,Daily sales,no
+2026-05-18,expense,supplies,746.92,Fabric and thread,no
+2026-05-18,sale,sales,379.67,Daily sales,no
+2026-05-19,sale,sales,370.89,Daily sales,no
+2026-05-20,sale,sales,265.89,Daily sales,no
+2026-05-20,expense,payroll,2400.0,Staff pay,yes
+2026-05-21,sale,sales,488.63,Daily sales,no
+2026-05-22,sale,sales,870.18,Daily sales,no
+2026-05-23,sale,sales,793.39,Daily sales,no
+2026-05-24,sale,sales,243.67,Daily sales,no
+2026-05-25,sale,sales,455.29,Daily sales,no
+2026-05-25,expense,supplies,727.66,Fabric and thread,no
+2026-05-26,sale,sales,366.69,Daily sales,no
+2026-05-27,sale,sales,457.45,Daily sales,no
+2026-05-28,sale,sales,539.94,Daily sales,no
+2026-05-29,sale,sales,630.16,Daily sales,no
+2026-05-30,sale,sales,833.15,Daily sales,no
+2026-05-31,sale,sales,279.75,Daily sales,no
+2026-06-01,expense,rent,1700.0,Monthly rent,yes
+2026-06-01,expense,supplies,840.6,Fabric and thread,no
+2026-06-01,sale,sales,334.48,Daily sales,no
+2026-06-02,sale,sales,306.69,Daily sales,no
+2026-06-03,expense,payroll,2400.0,Staff pay,yes
+2026-06-03,sale,sales,388.06,Daily sales,no
+2026-06-04,sale,sales,472.85,Daily sales,no
+2026-06-05,sale,sales,389.64,Daily sales,no
+2026-06-06,sale,sales,461.16,Daily sales,no
+2026-06-07,sale,sales,228.07,Daily sales,no
+2026-06-08,expense,supplies,555.3,Fabric and thread,no
+2026-06-08,sale,sales,295.27,Daily sales,no
+2026-06-09,sale,sales,414.02,Daily sales,no
+2026-06-10,sale,sales,319.3,Daily sales,no
+2026-06-11,sale,sales,462.94,Daily sales,no
+2026-06-12,sale,sales,464.99,Daily sales,no
+2026-06-13,sale,sales,552.61,Daily sales,no
+2026-06-14,sale,sales,234.59,Daily sales,no
+2026-06-15,expense,utilities,250.0,Utilities,yes
+2026-06-15,expense,supplies,604.59,Fabric and thread,no
+2026-06-15,sale,sales,287.5,Daily sales,no
+2026-06-16,sale,sales,293.72,Daily sales,no
+2026-06-17,sale,sales,318.99,Daily sales,no
+2026-06-17,expense,payroll,2400.0,Staff pay,yes
+2026-06-18,sale,sales,405.78,Daily sales,no
+2026-06-19,sale,sales,348.9,Daily sales,no
+2026-06-20,sale,sales,582.87,Daily sales,no
+2026-06-21,sale,sales,174.65,Daily sales,no
+2026-06-22,expense,supplies,537.87,Fabric and thread,no
+2026-06-22,sale,sales,356.34,Daily sales,no
+2026-06-23,sale,sales,219.17,Daily sales,no
+2026-06-24,sale,sales,301.65,Daily sales,no
+2026-06-25,sale,sales,283.87,Daily sales,no
+2026-06-26,sale,sales,399.49,Daily sales,no
+2026-06-27,sale,sales,551.76,Daily sales,no
+2026-06-28,sale,sales,184.89,Daily sales,no
+2026-06-29,expense,supplies,489.72,Fabric and thread,no
+2026-06-29,sale,sales,292.45,Daily sales,no
+2026-06-30,sale,sales,333.83,Daily sales,no
