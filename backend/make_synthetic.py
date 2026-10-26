@@ -1,6 +1,8 @@
+import os
+
 import numpy as np
 import pandas as pd
-import os
+
 SEED = 42
 START = "2025-01-01"
 END = "2026-06-30"
@@ -296,7 +298,8 @@ def make_cleaning():
                 wait = wait + 30
             pay_day = bill_day + pd.Timedelta(days=wait)
             if pay_day <= pd.Timestamp(END):
-                rows.append(make_row(pay_day, "sale", "sales", 3500, "Commercial client payment", "yes"))
+                note = "Commercial client payment (late)" if bill_day == pd.Timestamp("2025-10-31") else "Commercial client payment"
+                rows.append(make_row(pay_day, "sale", "sales", 3500, note, "yes"))
         return pd.DataFrame(rows)
     def print_raws():
             rng = np.random.default_rng(SEED)
@@ -316,7 +319,7 @@ def make_cleaning():
             print(summary)
             summary["net"] = summary["sale"] - summary["expense"]
             print(summary.round(0))
-            return CLEANING, summary,all_rows
+            return all_rows,CLEANING,summary
     return print_raws()
 
 def make_corner():
@@ -379,7 +382,6 @@ def make_corner():
         # Utilities: 15th of every month
         for day in pd.date_range(START, END, freq="MS"):
             pay_day = day + pd.Timedelta(days=14)
-            utilities = the_business["utilities"] * the_business["utilities_factor"].get(day.month, 1.0)
             rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
 
         return pd.DataFrame(rows)
@@ -621,7 +623,7 @@ def make_row(date, type_, category, amount, note, recurring):
     }
 
 
-all_rows,category,summary=make_tailor()
+all_rows,category,summary=make_cleaning()
 #make_childcare()
 def extract_csv(all_rows,business):
     os.makedirs("data/synthetic", exist_ok=True)

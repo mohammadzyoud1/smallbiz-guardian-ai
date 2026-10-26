@@ -500,7 +500,7 @@ date,type,category,amount,note,recurring
 2026-01-12,expense,supplies,239.78,Cleaning supplies,no
 2026-01-13,sale,sales,387.95,Daily sales,no
 2026-01-14,expense,payroll,4200.0,Staff pay,yes
-2026-01-14,sale,sales,3500.0,Commercial client payment,yes
+2026-01-14,sale,sales,3500.0,Commercial client payment (late),yes
 2026-01-14,sale,sales,3500.0,Commercial client payment,yes
 2026-01-14,sale,sales,473.9,Daily sales,no
 2026-01-15,expense,utilities,250.0,Utilities,yes
