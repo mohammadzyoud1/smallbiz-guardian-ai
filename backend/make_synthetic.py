@@ -325,7 +325,7 @@ def make_cleaning():
 def make_corner():
     CORNER = {
         "name": "corner",
-        "opening_cash": 7000,
+        "opening_cash": 3500,
         "cushion": 9000,
         "base_sales": 700.0,
         "sales_noise": 0.07,
@@ -429,7 +429,7 @@ def make_corner():
 def make_childcare():
     CHILDCARE = {
         "name": "childcare",
-        "opening_cash": 6000,
+        "opening_cash": 1000,
         "cushion": 8000,
         "families": 14,
         "summer_families": 11,
@@ -509,7 +509,7 @@ def make_childcare():
 def make_tailor():
     TAILOR = {
         "name": "tailor",
-        "opening_cash": 5000,
+        "opening_cash": 1000,
         "cushion": 4500,
         "base_sales": 380.0,
         "sales_noise": 0.15,

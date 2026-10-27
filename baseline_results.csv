@@ -1,7 +1,7 @@
-,naive,moving_avg,seasonal
-taqueria,2875.0,2302.0,1114.0
-salon,1884.0,1537.0,789.0
-cleaning,2531.0,2480.0,1208.0
-corner,1713.0,1634.0,687.0
-childcare,2812.0,2617.0,1645.0
-tailor,1746.0,1308.0,823.0
+,naive,naive_recall,naive_precision,moving_avg,moving_avg_recall,moving_avg_precision,seasonal,seasonal_recall,seasonal_precision
+taqueria,2874.51,,,2301.98,,,1113.73,,
+salon,1884.35,,,1536.7,,,789.14,,
+cleaning,2530.86,,0.0,2479.64,,,1207.69,,
+corner,1712.87,0.0,0.0,1634.27,0.0,,686.51,0.0,
+childcare,2812.5,0.0,0.0,2616.83,1.0,0.2,1645.19,1.0,0.2
+tailor,1746.49,0.0,,1307.65,0.0,,823.26,0.0,
