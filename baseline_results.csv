@@ -1,7 +1,7 @@
-,naive,naive_recall,naive_precision,moving_avg,moving_avg_recall,moving_avg_precision,seasonal,seasonal_recall,seasonal_precision
-taqueria,2874.51,,,2301.98,,,1113.73,,
-salon,1884.35,,,1536.7,,,789.14,,
-cleaning,2530.86,,0.0,2479.64,,,1207.69,,
-corner,1712.87,0.0,0.0,1634.27,0.0,,686.51,0.0,
-childcare,2812.5,0.0,0.0,2616.83,1.0,0.2,1645.19,1.0,0.2
-tailor,1746.49,0.0,,1307.65,0.0,,823.26,0.0,
+,naive,naive_smape,naive_recall,naive_precision,moving_avg,moving_avg_smape,moving_avg_recall,moving_avg_precision,seasonal,seasonal_smape,seasonal_recall,seasonal_precision
+taqueria,2874.51,134.42,,,2301.98,149.24,,,1113.73,80.69,,
+salon,1884.35,141.45,,,1536.7,146.97,,,789.14,84.94,,
+cleaning,2530.86,103.48,,0.0,2479.64,147.68,,,1207.69,49.74,,
+corner,1712.87,123.12,0.0,0.0,1634.27,170.5,0.0,,686.51,67.62,0.0,
+childcare,2812.5,145.32,0.0,0.0,2616.83,175.35,1.0,0.2,1645.19,85.65,1.0,0.2
+tailor,1746.49,148.56,0.0,,1307.65,122.73,0.0,,823.26,97.7,0.0,

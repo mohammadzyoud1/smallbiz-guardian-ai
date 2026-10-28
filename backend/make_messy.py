@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-src = "data/synthetic/salon.csv"
+src = "data/synthetic/taqueria.csv"
 with open(src, encoding="utf-8") as f:
     settings = [line for line in f if line.startswith("#")]
 df = pd.read_csv(src, comment="#")
@@ -18,9 +18,16 @@ copies = df.sample(5, random_state=1)
 df = pd.concat([df, copies], ignore_index=True)
 
 os.makedirs("data/messy", exist_ok=True)
-with open("data/messy/messy_2.csv", "w", encoding="utf-8", newline="") as f:
+df["amount"] = df["amount"].astype(object)
+df.loc[100, "amount"] = -250.0          # negative amount
+df.loc[200, "amount"] = "abc"           # text instead of a number
+df.loc[300, "date"] = "14/03/2025"      # wrong date format
+df.loc[400, "category"] = "suplies"     # misspelled category
+df.loc[500, "category"] = "rnt"
+
+with open("data/messy/messy2.csv", "w", encoding="utf-8", newline="") as f:
     f.writelines(settings)
     df.to_csv(f, index=False)
 
-print("Saved data/messy/messy.csv", len(df), "rows")
+print("Saved data/messy/messy2.csv", len(df), "rows")
 print(df.loc[[150]])

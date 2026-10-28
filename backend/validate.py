@@ -80,13 +80,13 @@ def validate(path):
 
     return errors, warnings, info
 
-
-for path in sorted(glob.glob("data/synthetic/*.csv") + glob.glob("data/messy/*.csv")):
-    errors, warnings, info = validate(path)
-    print(path, "->", "PASS" if not errors else "FAIL")
-    for line in info:
-        print("   info:   ", line)
-    for line in warnings:
-        print("   warning:", line)
-    for line in errors:
-        print("   ERROR:  ", line)
+if __name__ == "__main__":
+    for path in sorted(glob.glob("data/synthetic/*.csv") + glob.glob("data/messy/*.csv")):
+        errors, warnings, info = validate(path)
+        print(path, "->", "PASS" if not errors else "FAIL")
+        for line in info:
+            print("   info:   ", line)
+        for line in warnings:
+            print("   warning:", line)
+        for line in errors:
+            print("   ERROR:  ", line)

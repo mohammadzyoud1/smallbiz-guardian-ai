@@ -24,6 +24,13 @@ def mae(actual, predicted):
     return np.mean(np.abs(np.array(actual) - np.array(predicted)))
 
 
+def smape(actual, predicted):
+    actual = np.array(actual, dtype=float)
+    predicted = np.array(predicted, dtype=float)
+    denom = (np.abs(actual) + np.abs(predicted)) / 2
+    denom[denom == 0] = 1
+    return np.mean(np.abs(actual - predicted) / denom) * 100
+
 def low_cash_scores(actual_net, predicted_net, cash_before, cushion):
     real_cash = cash_before + np.cumsum(np.array(actual_net))
     forecast_cash = cash_before + np.cumsum(np.array(predicted_net))
@@ -48,6 +55,7 @@ def backtest(net,ending_cash,cushion, folds=4, horizon=13):
                                 ("moving_avg", moving_average(history)),
                                 ("seasonal", seasonal_naive(history))]:
             row[label] = mae(actual, forecast)
+            row[label + "_smape"] = smape(actual, forecast)
             recall, precision = low_cash_scores(actual, forecast, cash_before, cushion)
             row[label + "_recall"] = recall
             row[label + "_precision"] = precision
@@ -83,4 +91,6 @@ if __name__ == "__main__":
         table = pd.DataFrame(results).T.round(2)
         table.to_csv("baseline_results.csv")
         mlflow.log_artifact("baseline_results.csv")
+        pd.set_option("display.width", 200)
+        pd.set_option("display.max_columns", 20)
         print(table)
