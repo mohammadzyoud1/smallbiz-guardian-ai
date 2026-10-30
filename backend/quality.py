@@ -73,15 +73,31 @@ def validate(path):
 
 def quality_report(path):
     errors, warnings, info = validate(path)
+    weeks = None
+    for line in info:
+        if "weeks" in line:
+            weeks = int(line.split("(")[1].split(" ")[0])
+    verdict = "unknown"
+    if weeks is not None:
+        if weeks < 16:
+            verdict = "not enough history (minimum 16 weeks)"
+        elif weeks < 26:
+            verdict = "enough to forecast, but 26 or more weeks is recommended"
+        elif len(errors)>0:
+            verdict="not ready: fix the errors first"
+        else:
+            verdict = "enough history to forecast"
     return {
         "file": path,
         "passed": len(errors) == 0,           
         "errors": errors,
         "warnings": warnings,
         "info": info,
+        "forecast_ready": verdict,
     }
 def report_text(report):
     lines = [f"File: {report['file']}", "Result: " + ("PASS" if report["passed"] else "FAIL")]
+    lines.append("Forecast: " + report["forecast_ready"])
     for label, items in [("Info", report["info"]), ("Warnings", report["warnings"]), ("Errors", report["errors"])]:
         if items:
             lines.append(label + ":")
