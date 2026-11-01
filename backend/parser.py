@@ -5,7 +5,11 @@ from schema import Transaction
 
 
 def parse_file(path):
-    df = pd.read_csv(path, comment="#", dtype=str).fillna("")
+    if str(path).endswith(".xlsx"):
+        df = pd.read_excel(path, sheet_name="transactions", dtype=str).fillna("")
+        df["date"] = df["date"].str[:10]          
+    else:
+        df = pd.read_csv(path, comment="#", dtype=str).fillna("")
     good, problems = [], []
     for i, row in df.iterrows():
         try:

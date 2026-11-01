@@ -1,6 +1,6 @@
 import pandas as pd
-from validate import ALLOWED
-from validate import rows_text
+from backend.scripts.validate import ALLOWED
+from backend.scripts.validate import rows_text
 
 
 def validate(path):

@@ -34,4 +34,22 @@
 
 ### 8. Messy files
 
-- messy (salon): \_\_\_\_ (list the damage)
+- messy (salon): backend/data/messy/messy1.csv
+- messy (Taqueria): backend/data/messy/messy2.csv
+
+## Forecasting setup
+
+### 9. Only full weeks are kept (assumption)
+
+- Decision: the weekly table keeps Monday to Sunday weeks only; the partial first and last weeks are dropped.
+
+### 10. Baselines and backtest (brief, Section 5.2)
+
+- Target: weekly net cash flow. Ending cash = opening balance + running total of net.
+- Baselines: naive, 4-week moving average, seasonal naive (52 weeks back, or 4 weeks back when history is under a year).
+- Backtest: 4 folds, 13-week test blocks stepping back in time, history never includes its own test block.
+
+### 11. Validation is split in two (assumption)
+
+- Row level (schema.py, parser.py): rejects bad dates, non-numeric and non-positive amounts. Unknown categories become `other` (Appendix A).
+- File level (quality.py): duplicates, missing weeks, typo dates more than 3 years from the median, history length.

@@ -25,7 +25,13 @@ def weekly_table(df, opening_cash):
     full = (table.index - pd.Timedelta(days=6) >= first_day) & (table.index <= last_day)
     return table[full]
 
-
+def weekly_by_category(df, weekly):
+    expenses = df[df["type"] == "expense"]
+    table = expenses.pivot_table(
+        index=pd.Grouper(key="date", freq="W"),
+        columns="category", values="amount", aggfunc="sum",
+    )
+    return table.reindex(weekly.index).fillna(0)
 
 #settings, df = load_file("data/synthetic/taqueria.csv")
 #weekly = weekly_table(df, float(settings["opening_cash_balance"]))

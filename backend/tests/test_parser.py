@@ -26,3 +26,16 @@ def test_weekly_net_is_inflow_minus_outflow():
     })
     week = weekly_table(df, 1000.0)
     assert week["net"].iloc[0] == 120.0
+
+def test_xlsx_template_is_parsed():
+    good, problems = parse_file("data/templates/template_v1_example.xlsx")
+    assert len(good) == 7 and len(problems) == 0
+
+
+def test_category_columns_add_up_to_outflow():
+    from ingest import load_file, weekly_by_category
+
+    settings, df = load_file("data/synthetic/taqueria.csv")
+    weekly = weekly_table(df, float(settings["opening_cash_balance"]))
+    cats = weekly_by_category(df, weekly)
+    assert abs(cats.sum(axis=1) - weekly["outflow"]).max() < 0.01
