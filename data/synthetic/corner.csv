@@ -23,7 +23,7 @@ date,type,category,amount,note,recurring
 2025-01-13,sale,sales,668.07,Daily sales,no
 2025-01-13,expense,inventory,1382.89,Stock purchase,no
 2025-01-14,sale,sales,717.47,Daily sales,no
-2025-01-15,expense,utilities,450.0,Utilities,yes
+2025-01-15,expense,utilities,675.0,Utilities,yes
 2025-01-15,expense,payroll,2600.0,Staff pay,yes
 2025-01-15,sale,sales,686.76,Daily sales,no
 2025-01-16,expense,inventory,1405.43,Stock purchase,no
@@ -69,7 +69,7 @@ date,type,category,amount,note,recurring
 2025-02-13,expense,inventory,1254.34,Stock purchase,no
 2025-02-14,sale,sales,776.29,Daily sales,no
 2025-02-15,sale,sales,781.79,Daily sales,no
-2025-02-15,expense,utilities,450.0,Utilities,yes
+2025-02-15,expense,utilities,675.0,Utilities,yes
 2025-02-16,sale,sales,705.57,Daily sales,no
 2025-02-17,expense,inventory,1313.61,Stock purchase,no
 2025-02-17,sale,sales,675.41,Daily sales,no
@@ -239,7 +239,7 @@ date,type,category,amount,note,recurring
 2025-06-13,sale,sales,725.73,Daily sales,no
 2025-06-14,sale,sales,815.19,Daily sales,no
 2025-06-15,sale,sales,622.97,Daily sales,no
-2025-06-15,expense,utilities,450.0,Utilities,yes
+2025-06-15,expense,utilities,630.0,Utilities,yes
 2025-06-16,sale,sales,708.36,Daily sales,no
 2025-06-16,expense,inventory,1218.39,Stock purchase,no
 2025-06-17,sale,sales,682.92,Daily sales,no
@@ -281,7 +281,7 @@ date,type,category,amount,note,recurring
 2025-07-13,sale,sales,733.03,Daily sales,no
 2025-07-14,sale,sales,613.47,Daily sales,no
 2025-07-14,expense,inventory,1329.5,Stock purchase,no
-2025-07-15,expense,utilities,450.0,Utilities,yes
+2025-07-15,expense,utilities,630.0,Utilities,yes
 2025-07-15,sale,sales,623.35,Daily sales,no
 2025-07-16,expense,payroll,2600.0,Staff pay,yes
 2025-07-16,sale,sales,694.95,Daily sales,no
@@ -327,7 +327,7 @@ date,type,category,amount,note,recurring
 2025-08-14,expense,inventory,1255.93,Stock purchase,no
 2025-08-14,sale,sales,711.18,Daily sales,no
 2025-08-15,sale,sales,905.69,Daily sales,no
-2025-08-15,expense,utilities,450.0,Utilities,yes
+2025-08-15,expense,utilities,630.0,Utilities,yes
 2025-08-16,sale,sales,871.16,Daily sales,no
 2025-08-17,sale,sales,625.28,Daily sales,no
 2025-08-18,sale,sales,651.62,Daily sales,no
@@ -500,7 +500,7 @@ date,type,category,amount,note,recurring
 2025-12-14,sale,sales,692.51,Daily sales,no
 2025-12-15,sale,sales,591.38,Daily sales,no
 2025-12-15,expense,inventory,1338.05,Stock purchase,no
-2025-12-15,expense,utilities,450.0,Utilities,yes
+2025-12-15,expense,utilities,675.0,Utilities,yes
 2025-12-16,sale,sales,733.71,Daily sales,no
 2025-12-17,expense,payroll,2600.0,Staff pay,yes
 2025-12-17,sale,sales,682.15,Daily sales,no
@@ -543,7 +543,7 @@ date,type,category,amount,note,recurring
 2026-01-13,sale,sales,571.74,Daily sales,no
 2026-01-14,sale,sales,739.68,Daily sales,no
 2026-01-14,expense,payroll,2600.0,Staff pay,yes
-2026-01-15,expense,utilities,450.0,Utilities,yes
+2026-01-15,expense,utilities,675.0,Utilities,yes
 2026-01-15,sale,sales,677.57,Daily sales,no
 2026-01-15,expense,inventory,1442.96,Stock purchase,no
 2026-01-16,sale,sales,775.81,Daily sales,no
@@ -587,7 +587,7 @@ date,type,category,amount,note,recurring
 2026-02-12,sale,sales,740.65,Daily sales,no
 2026-02-13,sale,sales,662.57,Daily sales,no
 2026-02-14,sale,sales,700.12,Daily sales,no
-2026-02-15,expense,utilities,450.0,Utilities,yes
+2026-02-15,expense,utilities,675.0,Utilities,yes
 2026-02-15,sale,sales,596.0,Daily sales,no
 2026-02-16,expense,inventory,1270.58,Stock purchase,no
 2026-02-16,sale,sales,556.37,Daily sales,no
@@ -759,7 +759,7 @@ date,type,category,amount,note,recurring
 2026-06-14,sale,sales,737.84,Daily sales,no
 2026-06-15,sale,sales,648.16,Daily sales,no
 2026-06-15,expense,inventory,1335.18,Stock purchase,no
-2026-06-15,expense,utilities,450.0,Utilities,yes
+2026-06-15,expense,utilities,630.0,Utilities,yes
 2026-06-16,sale,sales,621.19,Daily sales,no
 2026-06-17,expense,payroll,2600.0,Staff pay,yes
 2026-06-17,sale,sales,644.12,Daily sales,no

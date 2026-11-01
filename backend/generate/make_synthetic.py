@@ -382,7 +382,8 @@ def make_corner():
         # Utilities: 15th of every month
         for day in pd.date_range(START, END, freq="MS"):
             pay_day = day + pd.Timedelta(days=14)
-            rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
+            utilities = the_business["utilities"] * the_business["utilities_factor"].get(day.month, 1.0)
+            rows.append(make_row(pay_day, "expense", "utilities", utilities, "Utilities", "yes"))
 
         return pd.DataFrame(rows)
 
@@ -623,7 +624,7 @@ def make_row(date, type_, category, amount, note, recurring):
     }
 
 
-all_rows,category,summary=make_cleaning()
+all_rows,category,summary=make_corner()
 #make_childcare()
 def extract_csv(all_rows,business):
     os.makedirs("data/synthetic", exist_ok=True)
@@ -638,68 +639,3 @@ def extract_csv(all_rows,business):
         out.to_csv(f, index=False)
 extract_csv(all_rows,category)
 
-
-#def scheduled_expenses(the_business):
-#    rows = []
-#    rent_increase = the_business.get("rent_increase")
-#    
-#    leaves = the_business.get("staff_leaves")
-#    
-#    # Rent: first day of every month
-#    for day in pd.date_range(START, END, freq="MS"):
-#        rent = the_business["rent"]
-#        if rent_increase is not None and day >= rent_increase[0]:
-#            rent = rent * rent_increase[1]
-#        rows.append(make_row(day, "expense", "rent", rent, "Monthly rent", "yes"))
-#
-#    # Payroll: every 14 days from the start date
-#    for day in pd.date_range(START, END, freq="14D"):
-#        payroll = the_business["payroll"]
-#        if leaves is not None and day >= leaves[0]:
-#            payroll = payroll * leaves[2]
-#        rows.append(make_row(day, "expense", "payroll", payroll, "Staff pay", "yes"))
-#
-#    # Utilities: 15th of every month
-#    for day in pd.date_range(START, END, freq="MS"):
-#        pay_day = day + pd.Timedelta(days=14)
-#        rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
-#
-#    return pd.DataFrame(rows)
-#
-#
-#def weekly_supplies(sales, rng,  the_business):
-#
-#    closure = the_business.get("closure")
-#    increase = the_business.get("price_increase")
-#    sales = sales.copy()
-#    sales["date"] = pd.to_datetime(sales["date"])
-#    rows = []
-#    for day in pd.date_range(START, END, freq="W-MON"):
-#        if closure is not None and  closure[0] <= day <= closure[1]:
-#            continue
-#        last_week = sales[(sales["date"] < day) & (sales["date"] >= day - pd.Timedelta(days=7))]
-#        amount = last_week["amount"].sum() * the_business["supplies_share"] * rng.normal(1.0, the_business["supplies_noise"])
-#        if increase is not None and day >= increase[0]:
-#            amount = amount * increase[1]
-#        if amount > 0:
-#            rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
-#    return pd.DataFrame(rows)
-
-#def print_rows(businesss):
-#    rng = np.random.default_rng(SEED)
-#    sales = daily_sales(rng,businesss)
-#    expenses = scheduled_expenses(businesss)
-#    supplies = weekly_supplies(sales, rng,the_business=businesss)
-#    all_rows = pd.concat([sales, expenses, supplies], ignore_index=True)
-#    all_rows = all_rows.sort_values("date").reset_index(drop=True)
-#    print(all_rows.head(12))
-#    print(len(all_rows), "rows")
-#    print("------------------------------")
-#    # Monthly check: money in vs money out
-#    all_rows["month"] = all_rows["date"].str[:7]
-#    summary = all_rows.pivot_table(
-#        index="month", columns="type", values="amount", aggfunc="sum"
-#    )
-#    print(summary)
-#    summary["net"] = summary["sale"] - summary["expense"]
-#    print(summary.round(0))

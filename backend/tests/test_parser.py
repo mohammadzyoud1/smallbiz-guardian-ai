@@ -15,14 +15,14 @@ def test_unknown_category_becomes_other():
 
 def test_negative_amount_is_rejected():
     good, problems = parse_file("data/messy/messy2.csv")
-    assert len(problems) == 0                     
+    assert len(problems) == 3                     
 
 
 def test_weekly_net_is_inflow_minus_outflow():
     df = pd.DataFrame({
-        "date": pd.to_datetime(["2025-01-06", "2025-01-07", "2025-01-08"]),
-        "type": ["sale", "sale", "expense"],
-        "amount": [100.0, 50.0, 30.0],
+        "date": pd.to_datetime(["2025-01-05", "2025-01-06", "2025-01-07", "2025-01-08", "2025-01-12", "2025-01-13"]),
+        "type": ["sale", "sale", "sale", "expense", "sale", "sale"],
+        "amount": [1.0, 100.0, 50.0, 30.0, 0.0, 1.0],
     })
     week = weekly_table(df, 1000.0)
     assert week["net"].iloc[0] == 120.0

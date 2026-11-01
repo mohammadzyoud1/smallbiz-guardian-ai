@@ -36,6 +36,6 @@ def test_types_are_sale_or_expense():
 
 
 def test_messy_file_has_a_bad_amount():
-    df = pd.read_csv("data/messy/messy.csv", comment="#", dtype=str)
+    df = pd.read_csv("data/messy/messy2.csv", comment="#", dtype=str)
     amounts = pd.to_numeric(df["amount"], errors="coerce")
     assert amounts.isna().any() or (amounts < 0).any()
