@@ -1,15 +1,16 @@
 import sys
 
 sys.path.insert(0, "backend")
-import numpy as pn
 import pandas as pd
-from flags import cushion_breach
-from flags import runway
-from flags import fixed_cost_coverage
-from flags import expense_concentration
-from flags import revenue_volatility
-from flags import cost_creep
-from flags import fixed_cost_coverage
+from flags import (
+    cost_creep,
+    cushion_breach,
+    expense_concentration,
+    fixed_cost_coverage,
+    revenue_volatility,
+    runway,
+)
+
 
 def test_breach_is_found_in_the_right_week():
     result = cushion_breach([-500] * 13, cash_now=2000, cushion=1000)
@@ -82,7 +83,7 @@ def test_coverage_flags_when_income_often_falls_short():
     inflow = pd.Series([500] * 12)
     costs = pd.DataFrame({"rent": [600] * 6 + [100] * 6, "payroll": [0] * 12})
     result = fixed_cost_coverage(inflow, costs)
-    assert result["covered"] == ____                   # BLANK
+    assert result["covered"] == 0.5               
 
 
 def test_coverage_is_fine_when_income_is_high():
@@ -91,16 +92,3 @@ def test_coverage_is_fine_when_income_is_high():
     result = fixed_cost_coverage(inflow, costs)
     assert result["flag"] is False
 
-
-def test_coverage_flags_when_income_often_falls_short():
-    inflow = pd.Series([500] * 12)
-    costs = pd.DataFrame({"rent": [600] * 6 + [100] * 6, "payroll": [0] * 12})
-    result = fixed_cost_coverage(inflow, costs)
-    assert result["covered"] == 0.5                  
-
-
-def test_coverage_is_fine_when_income_is_high():
-    inflow = pd.Series([2000] * 12)
-    costs = pd.DataFrame({"rent": [600] * 12, "payroll": [500] * 12})
-    result = fixed_cost_coverage(inflow, costs)
-    assert result["flag"] is False

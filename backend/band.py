@@ -1,5 +1,4 @@
 import numpy as np
-
 from baselines import seasonal_naive
 
 

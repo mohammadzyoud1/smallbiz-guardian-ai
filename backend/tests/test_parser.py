@@ -14,7 +14,7 @@ def test_unknown_category_becomes_other():
 
 
 def test_negative_amount_is_rejected():
-    good, problems = parse_file("data/messy/messy2.csv")
+    _good, problems = parse_file("data/messy/messy2.csv")
     assert len(problems) == 3                     
 
 

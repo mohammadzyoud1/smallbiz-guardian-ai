@@ -1,8 +1,8 @@
 import numpy as np
-from sklearn.ensemble import HistGradientBoostingRegressor
 import pandas as pd
+from scripts.features import make_direct_table, make_features
+from sklearn.ensemble import HistGradientBoostingRegressor
 
-from scripts.features import make_features, make_direct_table
 
 def model_backtest(weekly, folds=4, horizon=13):
     table = make_direct_table(make_features(weekly))

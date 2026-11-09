@@ -2,7 +2,6 @@ import mlflow
 import mlflow.pyfunc
 import numpy as np
 import pandas as pd
-
 from band import collect_residuals
 from ingest import load_file, weekly_table
 

@@ -4,8 +4,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
-from features import make_features ,make_direct_table   
-from ingest import load_file, weekly_table,weekly_by_category
+from features import make_direct_table, make_features
+from ingest import load_file, weekly_by_category, weekly_table
 
 pd.set_option("display.width", 200)
 pd.set_option("display.max_columns", 20)

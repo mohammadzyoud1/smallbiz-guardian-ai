@@ -3,7 +3,13 @@ import sys
 sys.path.insert(0, "backend")
 
 import numpy as np
-from server.scenarios import slow_season,cost_shock_one_time, cost_shock_recurring,break_even_lift, decision_lever
+from server.scenarios import (
+    break_even_lift,
+    cost_shock_one_time,
+    cost_shock_recurring,
+    decision_lever,
+    slow_season,
+)
 
 
 def test_slow_season_cuts_income_in_the_chosen_weeks():

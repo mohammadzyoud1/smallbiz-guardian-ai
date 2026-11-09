@@ -3,28 +3,34 @@ import tempfile
 import time
 import uuid
 from pathlib import Path
-import numpy as np
-import pandas as pd
+from typing import Literal
 
-from typing import Literal, Optional
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
 from band import make_band
-
-from ingest import load_file, weekly_by_category, weekly_table
-from quality import quality_report
-
-from flags import (
-    cost_creep, cushion_breach, expense_concentration,
-    fixed_cost_coverage, revenue_volatility, runway,
-)
-from pydantic import BaseModel
-
 from baselines import seasonal_naive
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from flags import (
+    cost_creep,
+    cushion_breach,
+    expense_concentration,
+    fixed_cost_coverage,
+    revenue_volatility,
+    runway,
+)
+from ingest import load_file, weekly_by_category, weekly_table
+from pydantic import BaseModel
+from quality import quality_report
 from scenarios import (
-    baseline_table, break_even_lift, cost_shock_one_time,
-    cost_shock_recurring, decision_lever, slow_season, summarize,
+    baseline_table,
+    break_even_lift,
+    cost_shock_one_time,
+    cost_shock_recurring,
+    decision_lever,
+    slow_season,
+    summarize,
 )
 
 DISCLAIMER = (
@@ -108,7 +114,7 @@ def flags(session_id: str):
     s = get_session(session_id)
     weekly = s["weekly"]
     net = weekly["net"]
-    point, low, high = make_band(net, net)
+    point, low, _high = make_band(net, net)
     cash_now = float(weekly["ending_cash"].iloc[-1])
 
     categories = [c for c in weekly.columns if c not in ("inflow", "outflow", "net", "ending_cash")]
@@ -137,7 +143,7 @@ class ScenarioRequest(BaseModel):
     length: int = 4
     amount: float = 0
     week: int = 1
-    category: Optional[str] = None
+    category: str | None = None
     rate: float = 0
     price_change: float = 0
     demand_response: float = 0

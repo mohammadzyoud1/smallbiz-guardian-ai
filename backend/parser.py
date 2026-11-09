@@ -1,6 +1,5 @@
 import pandas as pd
 from pydantic import ValidationError
-
 from schema import Transaction
 
 

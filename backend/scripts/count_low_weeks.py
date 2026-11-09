@@ -2,7 +2,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from ingest import load_file,weekly_table
+from ingest import load_file, weekly_table
+
 ''' Rolling-origin backtest harness (4 folds,
 13-week horizon) with MAE, sMAPE, low-
 cash-week recall and precision'''

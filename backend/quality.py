@@ -1,6 +1,6 @@
 import pandas as pd
-from scripts.validate import ALLOWED
-from scripts.validate import rows_text
+from scripts.validate import ALLOWED, rows_text
+
 
 def validate(path):
     errors, warnings, info = [], [], []
@@ -104,7 +104,6 @@ def report_text(report):
     return "\n".join(lines) 
 if __name__ == "__main__":
     import glob
-    import json
 
     for path in sorted(glob.glob("data/synthetic/*.csv") + glob.glob("data/messy/*.csv")):
         report = quality_report(path)

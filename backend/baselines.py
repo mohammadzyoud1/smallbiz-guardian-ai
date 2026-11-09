@@ -1,6 +1,7 @@
 import numpy as np
-from ingest import load_file, weekly_table
 import pandas as pd
+from ingest import load_file, weekly_table
+
 
 def naive(history, horizon=13):
     return np.repeat(history.iloc[-1], horizon)
