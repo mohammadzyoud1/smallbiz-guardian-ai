@@ -1,7 +1,6 @@
 import numpy as np
 from ingest import load_file, weekly_table
 import pandas as pd
-import mlflow
 
 def naive(history, horizon=13):
     return np.repeat(history.iloc[-1], horizon)
@@ -62,6 +61,8 @@ def backtest(net,ending_cash,cushion, folds=4, horizon=13):
         rows.append(row)
     return pd.DataFrame(rows)
 if __name__ == "__main__":
+    import mlflow
+
     names = ["taqueria", "salon", "cleaning", "corner", "childcare", "tailor"]
     for name in names:
         settings, df = load_file(f"data/synthetic/{name}.csv")

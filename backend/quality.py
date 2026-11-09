@@ -1,7 +1,6 @@
 import pandas as pd
-from backend.scripts.validate import ALLOWED
-from backend.scripts.validate import rows_text
-
+from scripts.validate import ALLOWED
+from scripts.validate import rows_text
 
 def validate(path):
     errors, warnings, info = [], [], []
