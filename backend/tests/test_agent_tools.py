@@ -3,9 +3,8 @@ import sys
 sys.path.insert(0, "backend")
 
 import pandas as pd
-from agent_tools import get_summary
-from agent_tools import get_forecast
-from agent_tools import run_scenario
+from agent_tools import get_forecast, get_summary, run_scenario
+
 
 def test_summary_reports_recent_averages():
     n = 12

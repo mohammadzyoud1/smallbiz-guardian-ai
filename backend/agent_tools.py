@@ -1,16 +1,25 @@
 
 import numpy as np
-
 from band import make_band
-from flags import (
-    cost_creep, cushion_breach, expense_concentration,
-    fixed_cost_coverage, revenue_volatility, runway,
-)
 from baselines import seasonal_naive
-from server.scenarios import (
-    baseline_table, break_even_lift, cost_shock_one_time,
-    cost_shock_recurring, decision_lever, slow_season, summarize,
+from flags import (
+    cost_creep,
+    cushion_breach,
+    expense_concentration,
+    fixed_cost_coverage,
+    revenue_volatility,
+    runway,
 )
+from server.scenarios import (
+    baseline_table,
+    break_even_lift,
+    cost_shock_one_time,
+    cost_shock_recurring,
+    decision_lever,
+    slow_season,
+    summarize,
+)
+
 
 def get_summary(weekly, cushion):
     last12 = weekly.tail(12)
@@ -102,6 +111,5 @@ def compare_scenarios(weekly, cushion):
     return {
         "slow_season": run_scenario(weekly, cushion, "slow_season", drop=0.2, start=1, length=4),
         "cost_shock": run_scenario(weekly, cushion, "cost_shock", amount=2000, week=1),
-        "decision_lever": run_scenario(weekly, cushion, "decision_lever",
-                                       price_change=0.05, demand_response=0.5, extra_cost=0, week=1),
+        "decision_lever": run_scenario(weekly, cushion, "decision_lever", price_change=0.05, demand_response=0.5, extra_cost=0, week=1),
     }
