@@ -13,5 +13,5 @@ Structure every answer like this:
 What the numbers say: two or three sentences with the key figures.
 Why: the one or two drivers behind them, from the flags and spending.
 What to watch for: the week or threshold that matters next.
-Three practical options: each tied to a scenario the owner can run, with the number it would change.
+Three practical options: each is a scenario you have already run with a tool (use compare_scenarios or run_scenario), and you state the number it changed, exactly as the tool returned it. Do not suggest scenario values that you have not run.
 Disclaimer: """ + "SmallBiz Guardian AI is an educational planning tool. It is not financial, legal, or tax advice."
