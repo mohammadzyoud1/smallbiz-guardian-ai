@@ -1,7 +1,13 @@
 import json
 
 from agent_prompt import SYSTEM_PROMPT
-from agent_tools import compare_scenarios, get_flags, get_forecast, get_summary, run_scenario
+from agent_tools import (
+    compare_scenarios,
+    get_flags,
+    get_forecast,
+    get_summary,
+    run_scenario,
+)
 
 TOOL_SPECS = [
     {"type": "function", "function": {
