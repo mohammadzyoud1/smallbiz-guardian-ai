@@ -66,6 +66,7 @@ def get_flags(weekly, cushion):
         "cost_creep": cost_creep(by_category),
         "revenue_volatility": revenue_volatility(weekly["inflow"]),
         "fixed_cost_coverage": fixed_cost_coverage(weekly["inflow"], by_category),
+        "cushion": cushion,
     }
 
 

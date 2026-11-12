@@ -1,8 +1,7 @@
 import re
-
 NUMBER = re.compile(r"-?\d[\d,]*\.?\d*")
 SKIP = re.compile(
-    r"\b\d+\s*[-‑]?\s*weeks?\b|\bweeks?\s+\d+\b|\b\d+\s*k\b|\b\d+\s+(?:practical\s+)?(?:options|scenarios)\b",
+    r"\b\d+\s*-?\s*weeks?\b|\bweeks?\s+\d+\b|\b\d+\s*k\b|\b\d+\s+(?:practical\s+)?(?:options|scenarios|flags)\b",
     re.IGNORECASE,
 )
 def collect_values(data, out=None):
@@ -30,7 +29,7 @@ def check_answer(answer, tool_outputs, tolerance=1.0):
     return {"faithful": not unsupported, "unsupported_numbers": unsupported}
 
 def numbers_in(text):
-    text = text.replace("–", "-").replace("−", "-").replace("—", "-")
+    text = text.replace("–", "-").replace("−", "-").replace("—", "-").replace("‑", "-")
     text = re.sub(r"-\s*\$", "-", text)
     text = SKIP.sub(" ", text)
     found = []

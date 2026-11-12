@@ -20,6 +20,10 @@ from flags import (
     revenue_volatility,
     runway,
 )
+from agent import ask as run_agent
+from faithfulness import check_answer
+from llm.llm_provider import GroqProvider
+from rec_log import feedback_counts, log_exchange, set_feedback
 from ingest import load_file, weekly_by_category, weekly_table
 from pydantic import BaseModel
 from quality import quality_report
@@ -190,3 +194,42 @@ def scenario(req: ScenarioRequest):
     if req.name == "decision_lever":
         result["break_even_lift"] = break_even_lift(inflow, req.extra_cost)
     return result
+
+ASK_LIMIT = 10
+ASK_WINDOW = 60
+recent_asks = {}
+
+
+class AskRequest(BaseModel):
+    session_id: str
+    question: str
+
+
+class FeedbackRequest(BaseModel):
+    exchange_id: int
+    helpful: bool
+
+@app.post("/ask")
+def ask_endpoint(req: AskRequest):
+    s = get_session(req.session_id)
+    now = time.time()
+    history = [t for t in recent_asks.get(req.session_id, []) if now - t < ASK_WINDOW]
+    if len(history) >= ASK_LIMIT:
+        raise HTTPException(status_code=____, detail="Too many questions. Please wait a minute.")    # BLANK
+    recent_asks[req.session_id] = history + [now]
+
+    result = run_agent(GroqProvider(), req.question, s["weekly"], s["cushion"])
+    check = check_answer(result["answer"], result["tool_outputs"])
+    row_id = log_exchange(req.question, result["tool_outputs"], result["answer"], check["faithful"], result["tokens"])
+    return {
+        "answer": result["answer"],
+        "exchange_id": row_id,
+        "faithful": check["faithful"],
+        "disclaimer": DISCLAIMER,
+    }
+
+
+@app.post("/feedback")
+def feedback(req: FeedbackRequest):
+    set_feedback(req.exchange_id, 1 if req.helpful else 0)
+    return {"counts": feedback_counts()}

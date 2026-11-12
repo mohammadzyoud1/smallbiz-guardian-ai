@@ -1,6 +1,6 @@
 import json
 import os
-
+import time
 
 class Provider:
     """What the agent needs from any language model."""
@@ -10,7 +10,7 @@ class Provider:
 
 
 class GroqProvider(Provider):
-    def __init__(self, model="openai/gpt-oss-20b"):
+    def __init__(self, model="openai/gpt-oss-120b"):
         from groq import Groq
 
         self.client = Groq(api_key=os.environ["GROQ_API_KEY"])
@@ -24,13 +24,17 @@ class GroqProvider(Provider):
             arguments["tools"] = tools
 
         response = None
-        for attempt in range(3):
+        for attempt in range(5):
             try:
                 response = self.client.chat.completions.create(**arguments)
                 break
+            except groq.RateLimitError:
+                time.sleep(20)
             except groq.BadRequestError:
-                if attempt == 2:
+                if attempt >= 2:
                     raise
+        if response is None:
+            raise RuntimeError("The model did not answer after several tries.")
 
         message = response.choices[0].message
         calls = []

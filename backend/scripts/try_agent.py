@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "llm"))
 from agent import ask
 from dotenv import load_dotenv
 from faithfulness import check_answer
+from faithfulness import numbers_in
 from ingest import load_file, weekly_by_category, weekly_table
 from llm_provider import GroqProvider
 
@@ -21,3 +22,4 @@ print(result["answer"])
 print()
 print("tools used:", len(result["tool_outputs"]), "| tokens:", result["tokens"])
 print(check_answer(result["answer"], result["tool_outputs"]))
+print(numbers_in("13‑week net of $1,399.21 and 3 practical options"))

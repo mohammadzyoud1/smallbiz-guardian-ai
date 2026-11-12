@@ -49,7 +49,7 @@ def run_tool(name, arguments, weekly, cushion):
     return {"error": "Unknown tool."}
 
 
-def ask(provider, question, weekly, cushion, max_rounds=4):
+def ask(provider, question, weekly, cushion, max_rounds=7):
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": question},
@@ -57,6 +57,7 @@ def ask(provider, question, weekly, cushion, max_rounds=4):
     tool_outputs, tokens = [], 0
     for _ in range(max_rounds):
         reply = provider.chat(messages, TOOL_SPECS)
+        print("   round", _, [c["name"] + str(c["arguments"]) for c in reply["tool_calls"]])
         tokens += reply["tokens"]
         if not reply["tool_calls"]:
             return {"answer": reply["text"], "tool_outputs": tool_outputs, "tokens": tokens}
@@ -68,7 +69,10 @@ def ask(provider, question, weekly, cushion, max_rounds=4):
                 for c in reply["tool_calls"]],
         })
         for call in reply["tool_calls"]:
-            result = run_tool(call["name"], call["arguments"], weekly, cushion)
+            try:
+                result = run_tool(call["name"], call["arguments"], weekly, cushion)
+            except Exception as error:
+                result = {"error": f"Tool failed: {error}"}
             tool_outputs.append(result)
             messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})  
     return {"answer": "I could not finish that question. Please try asking it differently.",
