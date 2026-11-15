@@ -36,7 +36,9 @@ from scenarios import (
     slow_season,
     summarize,
 )
+from dotenv import load_dotenv
 
+load_dotenv()
 DISCLAIMER = (
     "SmallBiz Guardian AI is an educational planning tool. "
     "It is not financial, legal, or tax advice."
