@@ -3,6 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "llm"))
+import mlflow
 
 from agent import ask
 from dotenv import load_dotenv
@@ -37,3 +38,12 @@ if __name__ == "__main__":
             print("   unsupported:", check_answer(result["answer"], result["tool_outputs"])["unsupported_numbers"])
             print("   answer:", result["answer"].replace("\n", " "))
     print(f"\n{passed}/{len(QUESTIONS)} passed | tokens: {total_tokens}")
+
+    
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    mlflow.set_experiment("agent-eval")
+    with mlflow.start_run(run_name="eval-run"):
+        mlflow.log_param("model", provider.model)
+        mlflow.log_metric("pass_rate", passed / len(QUESTIONS))
+        mlflow.log_metric("questions", len(QUESTIONS))
+        mlflow.log_metric("tokens", total_tokens)
