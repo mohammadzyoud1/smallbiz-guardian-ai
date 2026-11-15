@@ -6,8 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "llm"))
 
 from agent import ask
 from dotenv import load_dotenv
-from faithfulness import check_answer
-from faithfulness import numbers_in
+from faithfulness import check_answer, numbers_in
 from ingest import load_file, weekly_by_category, weekly_table
 from llm_provider import GroqProvider
 

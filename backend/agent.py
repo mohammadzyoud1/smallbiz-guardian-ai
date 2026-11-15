@@ -64,14 +64,13 @@ def ask(provider, question, weekly, cushion, max_rounds=7):
         messages.append({
             "role": "assistant", "content": reply["text"],
             "tool_calls": [
-                {"id": c["id"], "type": "function",
-                 "function": {"name": c["name"], "arguments": json.dumps(c["arguments"])}}
+                {"id": c["id"], "type": "function","function": {"name": c["name"], "arguments": json.dumps(c["arguments"])}}
                 for c in reply["tool_calls"]],
         })
         for call in reply["tool_calls"]:
             try:
                 result = run_tool(call["name"], call["arguments"], weekly, cushion)
-            except Exception as error:
+            except (ValueError, KeyError) as error:
                 result = {"error": f"Tool failed: {error}"}
             tool_outputs.append(result)
             messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})  

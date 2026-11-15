@@ -9,8 +9,11 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from agent import ask as run_agent
 from band import make_band
 from baselines import seasonal_naive
+from dotenv import load_dotenv
+from faithfulness import check_answer
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from flags import (
     cost_creep,
@@ -20,13 +23,11 @@ from flags import (
     revenue_volatility,
     runway,
 )
-from agent import ask as run_agent
-from faithfulness import check_answer
-from llm.llm_provider import GroqProvider
-from rec_log import feedback_counts, log_exchange, set_feedback
 from ingest import load_file, weekly_by_category, weekly_table
+from llm.llm_provider import GroqProvider
 from pydantic import BaseModel
 from quality import quality_report
+from rec_log import feedback_counts, log_exchange, set_feedback
 from scenarios import (
     baseline_table,
     break_even_lift,
@@ -36,7 +37,6 @@ from scenarios import (
     slow_season,
     summarize,
 )
-from dotenv import load_dotenv
 
 load_dotenv()
 DISCLAIMER = (
@@ -217,7 +217,7 @@ def ask_endpoint(req: AskRequest):
     now = time.time()
     history = [t for t in recent_asks.get(req.session_id, []) if now - t < ASK_WINDOW]
     if len(history) >= ASK_LIMIT:
-        raise HTTPException(status_code=____, detail="Too many questions. Please wait a minute.")    # BLANK
+        raise HTTPException(status_code=429, detail="Too many questions. Please wait a minute.")  
     recent_asks[req.session_id] = history + [now]
 
     result = run_agent(GroqProvider(), req.question, s["weekly"], s["cushion"])

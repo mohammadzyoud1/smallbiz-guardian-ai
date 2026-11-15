@@ -4,7 +4,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "llm"))
 import mlflow
-
 from agent import ask
 from dotenv import load_dotenv
 from eval_set import QUESTIONS

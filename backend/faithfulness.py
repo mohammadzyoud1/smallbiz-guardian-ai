@@ -1,4 +1,5 @@
 import re
+
 NUMBER = re.compile(r"-?\d[\d,]*\.?\d*")
 SKIP = re.compile(
     r"\b\d+\s*-?\s*weeks?\b|\bweeks?\s+\d+\b|\b\d+\s*k\b|\b\d+\s+(?:practical\s+)?(?:options|scenarios|flags)\b",
