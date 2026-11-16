@@ -15,6 +15,7 @@ from baselines import seasonal_naive
 from dotenv import load_dotenv
 from faithfulness import check_answer
 from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from flags import (
     cost_creep,
     cushion_breach,
@@ -46,6 +47,12 @@ DISCLAIMER = (
 SESSION_SECONDS = 60 * 60
 
 app = FastAPI(title="SmallBiz Guardian AI")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 sessions = {}
 
 

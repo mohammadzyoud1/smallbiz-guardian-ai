@@ -3,3 +3,4 @@
 mlflow.db
 mlruns/
 recommendations.db
+frontend/node_modules
