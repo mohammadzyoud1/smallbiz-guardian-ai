@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import ForecastChart from "./components/ForecastChart.vue";
 import FlagsPanel from "./components/FlagsPanel.vue";
+import ScenarioCard from "./components/ScenarioCard.vue";
+import ScenarioChart from "./components/ScenarioChart.vue";
+import ChatPanel from "./components/ChatPanel.vue";
 interface QualityReport {
   file: string;
   passed: boolean;
@@ -70,6 +73,8 @@ async function loadFlags(id: string) {
   const response = await fetch(`${API}/flags?session_id=${id}`);
   flags.value = await response.json();
 }
+
+const scenarioResult = ref<any>(null);
 </script>
 
 <template>
@@ -152,6 +157,131 @@ async function loadFlags(id: string) {
     >
       <h2 class="mb-3 text-lg font-semibold">3. Things to watch</h2>
       <FlagsPanel :flags="flags" />
+    </section>
+
+    <section
+      v-if="sessionId && report && report.errors.length === 0"
+      class="mt-4"
+    >
+      <h2 class="mb-3 text-lg font-semibold">4. Test a decision</h2>
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+        <ScenarioCard
+          title="Slow season"
+          help="What if sales drop for a few weeks?"
+          scenario="slow_season"
+          :session-id="sessionId"
+          :sliders="[
+            {
+              key: 'drop',
+              label: 'Sales drop',
+              min: 0.05,
+              max: 0.5,
+              step: 0.05,
+              value: 0.2,
+            },
+            {
+              key: 'start',
+              label: 'Starts in week',
+              min: 1,
+              max: 13,
+              step: 1,
+              value: 3,
+            },
+            {
+              key: 'length',
+              label: 'Lasts (weeks)',
+              min: 1,
+              max: 13,
+              step: 1,
+              value: 4,
+            },
+          ]"
+          @result="scenarioResult = $event"
+        />
+        <ScenarioCard
+          title="Cost shock"
+          help="What if a one-time expense hits?"
+          scenario="cost_shock"
+          :session-id="sessionId"
+          :sliders="[
+            {
+              key: 'amount',
+              label: 'Cost ($)',
+              min: 100,
+              max: 10000,
+              step: 100,
+              value: 2000,
+            },
+            {
+              key: 'week',
+              label: 'In week',
+              min: 1,
+              max: 13,
+              step: 1,
+              value: 4,
+            },
+          ]"
+          @result="scenarioResult = $event"
+        />
+        <ScenarioCard
+          title="Price change"
+          help="What if you change your prices?"
+          scenario="decision_lever"
+          :session-id="sessionId"
+          :sliders="[
+            {
+              key: 'price_change',
+              label: 'Price change',
+              min: -0.2,
+              max: 0.3,
+              step: 0.05,
+              value: 0.05,
+            },
+            {
+              key: 'demand_response',
+              label: 'Customers react (0 to 1)',
+              min: 0,
+              max: 1,
+              step: 0.5,
+              value: 0.5,
+            },
+            {
+              key: 'extra_cost',
+              label: 'Added weekly cost ($)',
+              min: 0,
+              max: 2000,
+              step: 100,
+              value: 0,
+            },
+          ]"
+          @result="scenarioResult = $event"
+        />
+      </div>
+
+      <div
+        v-if="scenarioResult && forecast"
+        class="mt-3 rounded-xl bg-white p-4 shadow-sm"
+      >
+        <h3 class="mb-2 text-base font-semibold">
+          {{ scenarioResult.title }}: your cash compared
+        </h3>
+        <ScenarioChart
+          :baseline="scenarioResult.ending_cash.baseline"
+          :scenario="scenarioResult.ending_cash.scenario"
+          :cushion="forecast.cushion"
+        />
+      </div>
+    </section>
+    <section
+      v-if="sessionId && report && report.errors.length === 0"
+      class="mt-4 rounded-xl bg-white p-4 shadow-sm"
+    >
+      <h2 class="mb-3 text-lg font-semibold">5. Ask the Guardian</h2>
+      <ChatPanel :session-id="sessionId" />
+      <p class="mt-3 text-xs text-slate-500">
+        SmallBiz Guardian AI is an educational planning tool. It is not
+        financial, legal, or tax advice.
+      </p>
     </section>
   </main>
 </template>
