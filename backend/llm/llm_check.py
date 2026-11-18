@@ -36,11 +36,11 @@ if msg.tool_calls:
     messages.append(msg)  # the model's own tool request
 
     for call in msg.tool_calls:
-        args = json.loads(call.function.arguments)   # {"week": 6}
-        result = get_forecast(args["week"])                  # BLANK 1: pass the week
+        args = json.loads(call.function.arguments)  
+        result = get_forecast(args["week"])                 
         messages.append({
             "role": "tool",
-            "tool_call_id": call.id,                    # BLANK 2: the call's id
+            "tool_call_id": call.id,                    
             "content": json.dumps(result),
         })
 

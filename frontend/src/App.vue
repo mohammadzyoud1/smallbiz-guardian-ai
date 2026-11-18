@@ -5,13 +5,18 @@ import FlagsPanel from "./components/FlagsPanel.vue";
 import ScenarioCard from "./components/ScenarioCard.vue";
 import ScenarioChart from "./components/ScenarioChart.vue";
 import ChatPanel from "./components/ChatPanel.vue";
+import { t, toggleLanguage, translateMessage } from "./i18n";
+interface ReportMessage {
+  code: string;
+  params: Record<string, string | number>;
+}
 interface QualityReport {
   file: string;
   passed: boolean;
-  errors: string[];
-  warnings: string[];
-  info: string[];
-  forecast_ready: string;
+  errors: ReportMessage[];
+  warnings: ReportMessage[];
+  info: ReportMessage[];
+  forecast_ready: ReportMessage;
 }
 
 interface UploadResponse {
@@ -79,83 +84,117 @@ const scenarioResult = ref<any>(null);
 
 <template>
   <main class="mx-auto min-h-screen max-w-xl bg-slate-50 p-4 text-slate-800">
-    <h1 class="text-2xl font-bold">SmallBiz Guardian AI</h1>
-    <p class="mt-1 text-xs text-slate-500">
-      SmallBiz Guardian AI is an educational planning tool. It is not financial,
-      legal, or tax advice.
-    </p>
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold">{{ t("title") }}</h1>
+      <button
+        class="min-h-11 rounded-lg border border-slate-300 px-3 text-sm"
+        @click="toggleLanguage"
+      >
+        {{ t("language") }}
+      </button>
+    </div>
+    <p class="mt-1 text-xs text-slate-500">{{ t("disclaimer") }}</p>
 
     <section class="mt-4 rounded-xl bg-white p-4 shadow-sm">
       <h2 class="mb-3 text-lg font-semibold">
-        1. Upload your sales and expenses
+        {{ t("upload") }}
       </h2>
-      <input
-        type="file"
-        accept=".csv,.xlsx"
-        :disabled="busy"
-        @change="onFile"
-        class="block w-full text-sm file:me-3 file:rounded-lg file:border-0 file:bg-emerald-600 file:px-4 file:py-2 file:text-white"
-      />
+      <label
+        class="flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700"
+      >
+        {{ t("choosefile") }}
+        <input
+          type="file"
+          accept=".csv,.xlsx"
+          :disabled="busy"
+          @change="onFile"
+          class="hidden"
+        />
+      </label>
+      <p class="mt-3 text-sm text-slate-600">
+        {{ t("needTemplate") }}
+        <a
+          href="/templates/template_v1_example.csv"
+          download
+          class="text-emerald-700 underline"
+          >CSV</a
+        >
+        ·
+        <a
+          href="/templates/template_v1_example.xlsx"
+          download
+          class="text-emerald-700 underline"
+          >Excel</a
+        >
+      </p>
       <p v-if="busy" class="mt-3 text-sm text-slate-500">
-        Checking your file...
+        {{ t("checking") }}
       </p>
       <p v-if="problem" class="mt-3 text-sm text-red-700">{{ problem }}</p>
     </section>
 
     <section v-if="report" class="mt-4 rounded-xl bg-white p-4 shadow-sm">
-      <h2 class="mb-2 text-lg font-semibold">Data check</h2>
+      <h2 class="mb-2 text-lg font-semibold">{{ t("dataCheck") }}</h2>
       <p
         :class="report.passed ? 'text-emerald-700' : 'text-red-700'"
         class="font-medium"
       >
+        {{ report.passed ? t("ready") : t("needsFixes") }}
+      </p>
+      <p class="mt-1 text-sm text-slate-600">
         {{
-          report.passed
-            ? "Your file is ready."
-            : "Your file needs fixes before we can forecast."
+          translateMessage(
+            report.forecast_ready.code,
+            report.forecast_ready.params,
+          )
         }}
       </p>
-      <p class="mt-1 text-sm text-slate-600">{{ report.forecast_ready }}</p>
 
       <div v-if="report.errors.length" class="mt-3">
-        <h3 class="font-semibold text-red-700">Please fix</h3>
+        <h3 class="font-semibold text-red-700">{{ t("pleaseFix") }}</h3>
         <ul class="ms-5 list-disc text-sm">
-          <li v-for="item in report.errors" :key="item">{{ item }}</li>
+          <li v-for="(item, index) in report.errors" :key="index">
+            {{ translateMessage(item.code, item.params) }}
+          </li>
         </ul>
       </div>
       <div v-if="report.warnings.length" class="mt-3">
-        <h3 class="font-semibold text-amber-700">Worth a look</h3>
+        <h3 class="font-semibold text-amber-700">{{ t("worthLook") }}</h3>
         <ul class="ms-5 list-disc text-sm">
-          <li v-for="item in report.warnings" :key="item">{{ item }}</li>
+          <li v-for="(item, index) in report.warnings" :key="index">
+            {{ translateMessage(item.code, item.params) }}
+          </li>
         </ul>
       </div>
       <ul
         v-if="report.info.length"
         class="ms-5 mt-3 list-disc text-sm text-slate-600"
       >
-        <li v-for="item in report.info" :key="item">{{ item }}</li>
+        <li v-for="(item, index) in report.info" :key="index">
+          {{ translateMessage(item.code, item.params) }}
+        </li>
       </ul>
     </section>
 
     <p v-if="sessionId" class="mt-4 text-sm font-medium text-emerald-700">
-      Session started. {{ weeks }} weeks of data loaded.
+      {{ t("session") }} {{ weeks }} {{ t("weeksLoaded") }}
     </p>
 
     <section
       v-if="forecast && report && report.errors.length === 0"
       class="mt-4 rounded-xl bg-white p-4 shadow-sm"
     >
-      <h2 class="mb-2 text-lg font-semibold">2. Your next 13 weeks</h2>
+      <h2 class="mb-2 text-lg font-semibold">{{ t("forecastTitle") }}</h2>
       <ForecastChart :forecast="forecast" />
       <p class="mt-2 text-xs text-slate-500">
-        The shaded area is a range of likely outcomes. It is an estimate, not a
-        promise.
+        {{ t("forecastNote") }}
       </p>
     </section>
     <section
       v-if="flags && report && report.errors.length === 0"
       class="mt-4 rounded-xl bg-white p-4 shadow-sm"
     >
-      <h2 class="mb-3 text-lg font-semibold">3. Things to watch</h2>
+      <h2 class="mb-3 text-lg font-semibold">{{ t("flagsTitle") }}</h2>
       <FlagsPanel :flags="flags" />
     </section>
 
@@ -163,17 +202,17 @@ const scenarioResult = ref<any>(null);
       v-if="sessionId && report && report.errors.length === 0"
       class="mt-4"
     >
-      <h2 class="mb-3 text-lg font-semibold">4. Test a decision</h2>
+      <h2 class="mb-3 text-lg font-semibold">{{ t("scenariosTitle") }}</h2>
       <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
         <ScenarioCard
-          title="Slow season"
-          help="What if sales drop for a few weeks?"
+          title="slowSeasonTitle"
+          help="slowSeasonHelp"
           scenario="slow_season"
           :session-id="sessionId"
           :sliders="[
             {
               key: 'drop',
-              label: 'Sales drop',
+              label: t('salesDrop'),
               min: 0.05,
               max: 0.5,
               step: 0.05,
@@ -181,7 +220,7 @@ const scenarioResult = ref<any>(null);
             },
             {
               key: 'start',
-              label: 'Starts in week',
+              label: t('startsInWeek'),
               min: 1,
               max: 13,
               step: 1,
@@ -189,7 +228,7 @@ const scenarioResult = ref<any>(null);
             },
             {
               key: 'length',
-              label: 'Lasts (weeks)',
+              label: t('lastsWeeks'),
               min: 1,
               max: 13,
               step: 1,
@@ -199,14 +238,14 @@ const scenarioResult = ref<any>(null);
           @result="scenarioResult = $event"
         />
         <ScenarioCard
-          title="Cost shock"
-          help="What if a one-time expense hits?"
+          title="costShockTitle"
+          help="costShockHelp"
           scenario="cost_shock"
           :session-id="sessionId"
           :sliders="[
             {
               key: 'amount',
-              label: 'Cost ($)',
+              label: t('costAmount'),
               min: 100,
               max: 10000,
               step: 100,
@@ -214,7 +253,7 @@ const scenarioResult = ref<any>(null);
             },
             {
               key: 'week',
-              label: 'In week',
+              label: t('inWeek'),
               min: 1,
               max: 13,
               step: 1,
@@ -224,14 +263,14 @@ const scenarioResult = ref<any>(null);
           @result="scenarioResult = $event"
         />
         <ScenarioCard
-          title="Price change"
-          help="What if you change your prices?"
+          title="priceChangeTitle"
+          help="priceChangeHelp"
           scenario="decision_lever"
           :session-id="sessionId"
           :sliders="[
             {
               key: 'price_change',
-              label: 'Price change',
+              label: 'priceChange',
               min: -0.2,
               max: 0.3,
               step: 0.05,
@@ -239,7 +278,7 @@ const scenarioResult = ref<any>(null);
             },
             {
               key: 'demand_response',
-              label: 'Customers react (0 to 1)',
+              label: t('customerReaction'),
               min: 0,
               max: 1,
               step: 0.5,
@@ -247,7 +286,7 @@ const scenarioResult = ref<any>(null);
             },
             {
               key: 'extra_cost',
-              label: 'Added weekly cost ($)',
+              label: t('addedWeeklyCost'),
               min: 0,
               max: 2000,
               step: 100,
@@ -263,7 +302,7 @@ const scenarioResult = ref<any>(null);
         class="mt-3 rounded-xl bg-white p-4 shadow-sm"
       >
         <h3 class="mb-2 text-base font-semibold">
-          {{ scenarioResult.title }}: your cash compared
+          {{ t(scenarioResult.title) }}: {{ t("cashCompared") }}
         </h3>
         <ScenarioChart
           :baseline="scenarioResult.ending_cash.baseline"
@@ -276,7 +315,10 @@ const scenarioResult = ref<any>(null);
       v-if="sessionId && report && report.errors.length === 0"
       class="mt-4 rounded-xl bg-white p-4 shadow-sm"
     >
-      <h2 class="mb-3 text-lg font-semibold">5. Ask the Guardian</h2>
+      <h2 class="mb-3 text-lg font-semibold">{{ t("askTitle") }}</h2>
+      <div class="mb-2">
+        <strong>{{ t("guardlang") }}</strong>
+      </div>
       <ChatPanel :session-id="sessionId" />
       <p class="mt-3 text-xs text-slate-500">
         SmallBiz Guardian AI is an educational planning tool. It is not

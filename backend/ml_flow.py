@@ -7,7 +7,7 @@ import pandas as pd
 mlflow.set_experiment("synthetic-data")
 
 with mlflow.start_run(run_name="week1-generator"):
-    mlflow.log_param("seed", 42)                  # BLANK: the seed from make_synthetic.py
+    mlflow.log_param("seed", 42)                  
     files = sorted(glob.glob("data/synthetic/*.csv"))
     mlflow.log_param("businesses", len(files))
     for path in files:

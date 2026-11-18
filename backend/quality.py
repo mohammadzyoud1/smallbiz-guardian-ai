@@ -1,6 +1,10 @@
 import pandas as pd
 from scripts.validate import ALLOWED, rows_text
-
+def message(code, **params):
+    return {
+        "code": code,
+        "params": params
+    }
 
 def validate(path):
     errors, warnings, info = [], [], []
@@ -13,59 +17,107 @@ def validate(path):
                 key, _, value = line[1:].strip().partition("=")
                 settings[key.strip()] = value.strip()
     if not settings.get("opening_cash_balance"):
-        errors.append("The opening cash balance is missing from the settings.")
+        errors.append(message("missing_opening_cash"))
 
     # read everything as text so nothing can crash
     df = pd.read_csv(path, comment="#", dtype=str)
     missing_cols = [c for c in ["date", "type", "category", "amount"] if c not in df.columns]
     if missing_cols:
-        errors.append("Missing columns: " + ", ".join(missing_cols))
+        errors.append(message(
+        "missing_columns",
+        columns=", ".join(missing_cols)
+    ))
         return errors, warnings, info
 
     dates = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
     bad = dates.isna()
     if bad.any():
-        errors.append(f"{bad.sum()} rows have a date that is not in YYYY-MM-DD format (rows: {rows_text(bad)}).")
+        errors.append(message(
+        "invalid_date_format",
+        count=int(bad.sum()),
+        rows=rows_text(bad)
+    ))
 
     amounts = pd.to_numeric(df["amount"], errors="coerce")
     bad = amounts.isna()
     if bad.any():
-        errors.append(f"{bad.sum()} rows have an amount that is not a number (rows: {rows_text(bad)}).")
+        errors.append(message(
+            "invalid_amount",
+            count=int(bad.sum()),
+            rows=rows_text(bad)
+        ))
     bad = amounts < 0
     if bad.any():
-        errors.append(f"{bad.sum()} rows have a negative amount (rows: {rows_text(bad)}).")
+        errors.append(message(
+            "negative_amount",
+            count=int(bad.sum()),
+            rows=rows_text(bad)
+        ))
 
     bad = ~df["type"].isin(["sale", "expense"])
     if bad.any():
-        errors.append(f"{bad.sum()} rows have a type that is not sale or expense (rows: {rows_text(bad)}).")
+        errors.append(message(
+            "invalid_transaction_type",
+            count=int(bad.sum()),
+            rows=rows_text(bad)
+        ))
 
     bad = ~df["category"].isin(ALLOWED)
     if bad.any():
-        warnings.append(f"{bad.sum()} rows have an unknown category (rows: {rows_text(bad)}); they will be counted as 'other'.")
+        warnings.append(message(
+            "unknown_category",
+            count=int(bad.sum()),
+            rows=rows_text(bad)
+        ))
 
     dup = df.duplicated()
     if dup.any():
-        warnings.append(f"{dup.sum()} rows are exact duplicates of another row (rows: {rows_text(dup)}).")
+        warnings.append(message(
+            "duplicate_rows",
+            count=int(dup.sum()),
+            rows=rows_text(dup)
+        ))
    
     good = dates.dropna()
     if len(good) > 0:
           middle = good.median()
           far = (good - middle).abs() > pd.Timedelta(days=1095)     
           if far.any():
-              errors.append(f"{far.sum()} rows have a date more than 3 years from the rest of the data, which looks like a typo, such as 2052 instead of 2025 (rows: {rows_text(far.reindex(df.index, fill_value=False))}).")
+              errors.append(message(
+                "dates_far_from_median",
+                count=int(far.sum()),
+                rows=rows_text(
+                    far.reindex(df.index, fill_value=False)
+                )
+            ))
               good = good[~far]
     if len(good) > 0:
         first, last = good.min(), good.max()
         weeks = (last - first).days / 7
-        info.append(f"The data covers {first.date()} to {last.date()} ({weeks:.0f} weeks).")
+        info.append(message(
+            "data_coverage",
+            first=first.date().isoformat(),
+            last=last.date().isoformat(),
+            weeks=round(weeks)
+        ))
         if weeks < 16:
-            errors.append("There are fewer than 16 weeks of data, which is not enough to forecast.")
+            errors.append(message(
+                "insufficient_history",
+                minimum=16
+            ))
         elif weeks < 26:
-            warnings.append("There are fewer than 26 weeks of data. A forecast is possible, but 26 or more is recommended.")
+            warnings.append(message(
+                "short_history",
+                recommended=26
+            ))
         have = set(good.dt.to_period("W"))
         missing = [w for w in pd.period_range(first, last, freq="W") if w not in have]
         if missing:
-            warnings.append(f"{len(missing)} weeks have no transactions at all (the first is the week of {missing[0].start_time.date()}).")
+            warnings.append(message(
+                "weeks_without_transactions",
+                count=len(missing),
+                first_week=missing[0].start_time.date().isoformat()
+            ))
 
     return errors, warnings, info
 
@@ -76,16 +128,22 @@ def quality_report(path):
     for line in info:
         if "weeks" in line:
             weeks = int(line.split("(")[1].split(" ")[0])
-    verdict = "unknown"
+    verdict = message("unknown")
     if weeks is not None:
         if weeks < 16:
-            verdict = "not enough history (minimum 16 weeks)"
+            verdict = message(
+                "not_enough_history",
+                minimum=16
+            )
         elif weeks < 26:
-            verdict = "enough to forecast, but 26 or more weeks is recommended"
+            verdict = message(
+                "forecast_recommended",
+                recommended=26
+            )
         elif len(errors)>0:
-            verdict="not ready: fix the errors first"
+            verdict=message("fix_errors_first")
         else:
-            verdict = "enough history to forecast"
+            verdict = message("enough_history")
     return {
         "file": path,
         "passed": len(errors) == 0,           
@@ -94,13 +152,33 @@ def quality_report(path):
         "info": info,
         "forecast_ready": verdict,
     }
+
+def format_message(item):
+    code = item["code"]
+    params = item.get("params", {})
+
+    if not params:
+        return code
+
+    details = ", ".join(
+        f"{key}={value}"
+        for key, value in params.items()
+    )
+
+    return f"{code} ({details})"
 def report_text(report):
-    lines = [f"File: {report['file']}", "Result: " + ("PASS" if report["passed"] else "FAIL")]
-    lines.append("Forecast: " + report["forecast_ready"])
+    lines = [
+        f"File: {report['file']}",
+        "Result: " + ("PASS" if report["passed"] else "FAIL"),
+        "Forecast: " + format_message(report["forecast_ready"])
+    ]
     for label, items in [("Info", report["info"]), ("Warnings", report["warnings"]), ("Errors", report["errors"])]:
         if items:
             lines.append(label + ":")
-            lines.extend("  - " + item for item in items)
+            lines.extend(
+                "  - " + format_message(item)
+                for item in items
+            )
     return "\n".join(lines) 
 if __name__ == "__main__":
     import glob

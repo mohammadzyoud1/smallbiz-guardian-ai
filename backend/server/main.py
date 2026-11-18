@@ -96,7 +96,7 @@ async def upload(file: UploadFile = File(...)):
 def get_session(session_id: str):
     clean_sessions()
     if session_id not in sessions:
-        raise HTTPException(status_code=404, detail="Session not found or expired.")    # BLANK
+        raise HTTPException(status_code=404, detail="Session not found or expired.")   
     return sessions[session_id]
 
 @app.get("/forecast")

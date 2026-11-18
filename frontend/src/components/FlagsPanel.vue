@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { computed } from "vue";
-
+import { t, translateMessage, type Key } from "../i18n";
+interface Message {
+  code: string;
+  params: Record<string, string | number>;
+}
 interface Flag {
   flag?: boolean;
-  reason: string;
+  reason: Message;
 }
 
 const props = defineProps<{ flags: Record<string, Flag | string> }>();
 
-const titles: Record<string, string> = {
-  cushion_breach: "Cash cushion",
-  cushion_breach_worse_case: "Cash cushion, worst case",
-  runway: "How long your cash lasts",
-  expense_concentration: "One cost dominates",
-  cost_creep: "Rising costs",
-  revenue_volatility: "Income swings",
-  fixed_cost_coverage: "Rent and payroll covered",
+const titles: Record<string, Key> = {
+  cushion_breach: "cashCushion",
+  cushion_breach_worse_case: "cashCushionWorstCase",
+  runway: "cashRunway",
+  expense_concentration: "expenseConcentration",
+  cost_creep: "risingCosts",
+  revenue_volatility: "incomeSwings",
+  fixed_cost_coverage: "fixedCostCoverage",
 };
 
 const cards = computed(() =>
@@ -23,7 +27,12 @@ const cards = computed(() =>
     .filter(([key]) => typeof props.flags[key] === "object")
     .map(([key, title]) => {
       const item = props.flags[key] as Flag;
-      return { key, title, warn: item.flag === true, reason: item.reason };
+      return {
+        key,
+        title: t(title),
+        warn: item.flag === true,
+        reason: translateMessage(item.reason.code, item.reason.params),
+      };
     }),
 );
 </script>

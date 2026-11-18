@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
-
+import { t, type Key } from "../i18n";
 interface Slider {
   key: string;
   label: string;
@@ -11,7 +11,7 @@ interface Slider {
 }
 
 const props = defineProps<{
-  title: string;
+  title: Key;
   help: string;
   scenario: string;
   sessionId: string;
@@ -74,9 +74,11 @@ function money(n: number) {
     </div>
 
     <p v-if="summary" class="mt-4 rounded-lg bg-slate-50 p-3 text-sm">
-      Lowest cash: <strong>{{ money(summary.change.lowest_cash) }}</strong
+      {{ t("lowestCash") }}:
+      <strong>{{ money(summary.change.lowest_cash) }}</strong
       ><br />
-      13-week net: <strong>{{ money(summary.change.net_13_weeks) }}</strong>
+      {{ t("thirteenWeekNet") }}:
+      <strong>{{ money(summary.change.net_13_weeks) }}</strong>
     </p>
   </article>
 </template>

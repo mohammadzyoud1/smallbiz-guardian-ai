@@ -40,5 +40,5 @@ if __name__ == "__main__":
         mlflow.pyfunc.log_model(
             artifact_path="model",
             python_model=SeasonalForecaster(residuals),
-            registered_model_name="guardian-forecaster v1",             # BLANK
+            registered_model_name="guardian-forecaster v1",            
         )

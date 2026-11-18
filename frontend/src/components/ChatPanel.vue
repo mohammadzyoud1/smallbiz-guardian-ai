@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { t } from "../i18n";
 
 interface Message {
   role: "owner" | "guardian";
   text: string;
   exchangeId?: number;
   voted?: boolean;
+  helpfulVote?: boolean;
 }
 
 const props = defineProps<{ sessionId: string }>();
@@ -78,7 +80,9 @@ async function vote(message: Message, helpful: boolean) {
     body: JSON.stringify({ exchange_id: message.exchangeId, helpful }),
   });
   message.voted = true;
+  message.helpfulVote = helpful;
 }
+const askPlaceholder = computed(() => t("askPlaceholder"));
 </script>
 
 <template>
@@ -112,15 +116,19 @@ async function vote(message: Message, helpful: boolean) {
           class="mt-2 flex gap-2"
         >
           <button
+            v-if="!m.voted || m.helpfulVote === true"
             class="min-h-11 min-w-11 rounded-lg bg-white text-lg"
+            :class="m.voted ? 'bg-emerald-100 ring-2 ring-emerald-500' : ''"
             :disabled="m.voted"
             @click="vote(m, true)"
           >
             👍
           </button>
-          <div>alooooooooooooooooooooooooooooooooooooo</div>
+
           <button
+            v-if="!m.voted || m.helpfulVote === false"
             class="min-h-11 min-w-11 rounded-lg bg-white text-lg"
+            :class="m.voted ? 'bg-red-100 ring-2 ring-red-500' : ''"
             :disabled="m.voted"
             @click="vote(m, false)"
           >
@@ -137,7 +145,7 @@ async function vote(message: Message, helpful: boolean) {
       <input
         v-model="question"
         type="text"
-        placeholder="Ask about your cash..."
+        :placeholder="askPlaceholder"
         class="min-h-11 min-w-0 flex-1 rounded-lg border border-slate-300 px-3 text-sm"
       />
       <button
@@ -145,7 +153,7 @@ async function vote(message: Message, helpful: boolean) {
         :disabled="busy"
         class="min-h-11 rounded-lg bg-emerald-600 px-4 text-sm font-medium text-white disabled:opacity-50"
       >
-        Ask
+        {{ t("ask") }}
       </button>
     </form>
   </div>
