@@ -43,21 +43,31 @@ async function onFile(event: Event) {
   try {
     const formData = new FormData();
     formData.append("file", file);
+    console.log("Uploading:", file.name);
     const response = await fetch(`${API}/upload`, {
       method: "POST",
       body: formData,
     });
     const data: UploadResponse = await response.json();
+    console.log("Upload response:", data);
+    if (!response.ok) {
+      throw new Error(`Upload failed: ${response.status}`);
+    }
     report.value = data.report;
     sessionId.value = data.session_id;
     weeks.value = data.weeks ?? 0;
+    if (!data.report) {
+      throw new Error("Upload response does not contain a report.");
+    }
     console.log(`errors : ${report.value.errors}`);
     console.log(`report value :${report.value}`);
-    if (data.session_id && report.value.errors.length === 0)
+    if (data.session_id && report.value.errors.length === 0) {
       await Promise.all([
         loadForecast(data.session_id),
         loadFlags(data.session_id),
       ]);
+      console.log("Forecast and flags loaded successfully.");
+    }
   } catch {
     problem.value = "Could not reach the server. Please try again.";
   } finally {
