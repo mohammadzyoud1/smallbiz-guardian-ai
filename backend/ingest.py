@@ -1,14 +1,12 @@
 import pandas as pd
-
+from parser import parse_file
 
 def load_file(path):
-    settings = {}
-    with open(path, encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("#"):
-                key, _, value = line[1:].strip().partition("=")
-                settings[key.strip()] = value.strip()
-    df = pd.read_csv(path, comment="#")
+    good, problems, settings, df = parse_file(path)
+
+    if problems:
+        raise ValueError(f"Invalid transactions: {problems[:5]}")
+    df["amount"] = pd.to_numeric(df["amount"], errors="raise")
     df["date"] = pd.to_datetime(df["date"])
     return settings, df
 

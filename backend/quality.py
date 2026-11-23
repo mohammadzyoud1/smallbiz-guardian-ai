@@ -1,4 +1,5 @@
 import pandas as pd
+from parser import parse_file
 from scripts.validate import ALLOWED, rows_text
 def message(code, **params):
     return {
@@ -8,19 +9,17 @@ def message(code, **params):
 
 def validate(path):
     errors, warnings, info = [], [], []
-
-    # settings lines
     settings = {}
-    with open(path, encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("#"):
-                key, _, value = line[1:].strip().partition("=")
-                settings[key.strip()] = value.strip()
+    # read everything as text so nothing can crash
+    good, problems, settings, df = parse_file(path)
     if not settings.get("opening_cash_balance"):
         errors.append(message("missing_opening_cash"))
 
-    # read everything as text so nothing can crash
-    df = pd.read_csv(path, comment="#", dtype=str)
+    if problems:
+        errors.extend(
+            message("invalid_transaction", details=problem)
+            for problem in problems
+        )
     missing_cols = [c for c in ["date", "type", "category", "amount"] if c not in df.columns]
     if missing_cols:
         errors.append(message(
