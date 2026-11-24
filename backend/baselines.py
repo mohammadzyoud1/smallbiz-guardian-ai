@@ -2,61 +2,118 @@ import numpy as np
 import pandas as pd
 from ingest import load_file, weekly_table
 
+# Baseline Forecasting Methods
+
+# Predict future values using the last observed value
 
 def naive(history, horizon=13):
     return np.repeat(history.iloc[-1], horizon)
 
-
+# Predict future values using the average of the most recent weeks
 def moving_average(history, horizon=13, window=4):
-    return np.repeat(history.iloc[-window:].mean(), horizon)     
+    return np.repeat(history.iloc[-window:].mean(), horizon)  
 
+
+# Predict future values using the same seasonal pattern from previous periods
 def seasonal_naive(history, horizon=13, season=52):
+
+    # Use a shorter seasonal period if there is not enough historical data
     if len(history) < season:
         season = 4
+
+    # Extract historical values as a NumPy array
     values = history.values
+
+    # Store the forecasted values
     forecast = []
+
+    # Repeat the historical seasonal pattern for the forecast horizon
     for i in range(horizon):
         forecast.append(values[len(values) - season + i % season])
     return np.array(forecast)
 
 
+# Evaluation Metrics
+
 def mae(actual, predicted):
     return np.mean(np.abs(np.array(actual) - np.array(predicted)))
 
 
+# Calculate Symmetric Mean Absolute Percentage Error (sMAPE)
 def smape(actual, predicted):
     actual = np.array(actual, dtype=float)
     predicted = np.array(predicted, dtype=float)
+
+    # Calculate the average absolute magnitude of actual and predicted values
     denom = (np.abs(actual) + np.abs(predicted)) / 2
+
+    # Prevent division by zero when both values are zero
     denom[denom == 0] = 1
+
+    # Calculate the average symmetric percentage error
     return np.mean(np.abs(actual - predicted) / denom) * 100
 
+
+# Low Cash Detection Metrics
+
 def low_cash_scores(actual_net, predicted_net, cash_before, cushion):
+
+    # Calculate actual cash balances throughout the forecast period
     real_cash = cash_before + np.cumsum(np.array(actual_net))
+
+    # Calculate forecasted cash balances throughout the same period
     forecast_cash = cash_before + np.cumsum(np.array(predicted_net))
+
+    # Identify weeks when actual cash falls below the minimum cushion
     real_low = real_cash < cushion
-    forecast_low = forecast_cash < cushion          
+
+    # Identify weeks when forecasted cash falls below the minimum cushion
+    forecast_low = forecast_cash < cushion  
+
+    # Count weeks where both actual and forecasted cash are below the cushion        
     caught = (real_low & forecast_low).sum()
+
+    # Recall: percentage of actual low-cash weeks correctly detected
     recall = caught / real_low.sum() if real_low.sum() > 0 else np.nan
+
+    # Precision: percentage of predicted low-cash weeks that actually occurred
     precision = caught / forecast_low.sum() if forecast_low.sum() > 0 else np.nan
     return recall, precision
 
 
-#test the simple forcast 
+# Backtesting Baseline Forecasting Models
+
+
 def backtest(net,ending_cash,cushion, folds=4, horizon=13):
+
+    # Store evaluation results for each backtesting fold
     rows = []
+
+    # Perform multiple backtesting rounds using historical data
     for k in range(folds):
+
+        # Determine the end position of the historical data for this fold
         end = len(net) - (k * horizon)                  
+
+        # Use all data before the test period as historical input
         history = net.iloc[:(end - horizon)]                     
+
+        # Extract the actual net cash flow values for the test period
         actual = net.iloc[end - horizon:end]
+
+        # Get the cash balance immediately before the test period
         cash_before = ending_cash.iloc[end - horizon - 1]
         row = {}
+
+        # Evaluate each baseline forecasting method
         for label, forecast in [("naive", naive(history)),
                                 ("moving_avg", moving_average(history)),
                                 ("seasonal", seasonal_naive(history))]:
             row[label] = mae(actual, forecast)
             row[label + "_smape"] = smape(actual, forecast)
             recall, precision = low_cash_scores(actual, forecast, cash_before, cushion)
+
+            # Store low-cash detection metrics
             row[label + "_recall"] = recall
             row[label + "_precision"] = precision
         rows.append(row)

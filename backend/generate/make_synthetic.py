@@ -27,6 +27,7 @@ def make_taqueria():
         "price_increase": (pd.Timestamp("2025-09-01"), 1.12),
 
         }
+    # Generate daily sales with weekday and seasonal variations
     def daily_sales(rng,the_business):
         days = pd.date_range(START, END, freq="D")
         closure = the_business.get("closure")
@@ -49,7 +50,7 @@ def make_taqueria():
             })
         return pd.DataFrame(rows)
 
-    
+    # Generate recurring rent, payroll, and utility expenses
     def scheduled_expenses(the_business):
         rows = []
        
@@ -70,6 +71,8 @@ def make_taqueria():
             rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
 
         return pd.DataFrame(rows)
+    
+    # Calculate weekly food-supply expenses based on previous sales
     def weekly_supplies(sales, rng,  the_business):
         increase = the_business.get("price_increase")
 
@@ -87,6 +90,7 @@ def make_taqueria():
             if amount > 0:
                 rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
         return pd.DataFrame(rows)
+    # Combine generated transactions 
     def print_raws():
         rng = np.random.default_rng(SEED)
         sales = daily_sales(rng,TAQUERIA)
@@ -128,7 +132,7 @@ def make_salon():
         "staff_leaves": (pd.Timestamp("2026-03-01"), 0.85, 0.75),
     }
 
-
+    # Generate daily sales with seasonal and staff-leave adjustments
     def daily_sales(rng,the_business):
         days = pd.date_range(START, END, freq="D")
     
@@ -137,6 +141,8 @@ def make_salon():
         for day in days:
             amount = the_business['base_sales'] * the_business["weekday_factor"].get(day.weekday()) * the_business["season_factor"].get(day.month, 1.0)
             amount = amount * rng.normal(1.0, the_business['sales_noise'])
+
+            # Reduce sales after staff leave begins
             if leaves is not None and day >= leaves[0]:
                 amount = amount * leaves[1] 
        
@@ -149,6 +155,8 @@ def make_salon():
                 "recurring": "no",
             })
         return pd.DataFrame(rows)
+    
+    # Generate recurring expenses, including rent increases and payroll adjustments
     def scheduled_expenses(the_business):
         rows = []
         rent_increase = the_business.get("rent_increase")
@@ -176,6 +184,8 @@ def make_salon():
 
         return pd.DataFrame(rows)
 
+
+    # Calculate weekly inventory expenses based on previous sales
     def weekly_supplies(sales, rng,  the_business):
     
         
@@ -190,6 +200,8 @@ def make_salon():
             if amount > 0:
                 rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
         return pd.DataFrame(rows)
+
+     # Combine transactions
     def print_raws():
             rng = np.random.default_rng(SEED)
             sales = daily_sales(rng,SALON)
@@ -230,6 +242,7 @@ def make_cleaning():
         "supplies_note": "Cleaning supplies",
     }
 
+    # Generate daily service income with weekday variations
 
     def daily_sales(rng,the_business):
         days = pd.date_range(START, END, freq="D")
@@ -249,6 +262,9 @@ def make_cleaning():
                 "recurring": "no",
             })
         return pd.DataFrame(rows)
+
+     # Generate recurring rent, payroll, and utility expenses
+
     def scheduled_expenses(the_business):
         rows = []
        
@@ -272,6 +288,7 @@ def make_cleaning():
 
         return pd.DataFrame(rows)
 
+    # Calculate weekly cleaning-supply expenses based on previous sales
     def weekly_supplies(sales, rng,  the_business):
     
         
@@ -286,9 +303,12 @@ def make_cleaning():
             if amount > 0:
                 rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
         return pd.DataFrame(rows)
+    # one-time unexpected van repair expense
     def van_repair():
         row = make_row(pd.Timestamp("2025-07-15"), "expense", "equipment", 2400, "Van repair", "no")
         return pd.DataFrame([row])
+
+    # monthly commercial-client payments with payment delays
     def commercial_income():
         rows = []
         # one bill at the end of each month, starting Nov 2024 so Jan 2025 already gets a payment
@@ -301,6 +321,8 @@ def make_cleaning():
                 note = "Commercial client payment (late)" if bill_day == pd.Timestamp("2025-10-31") else "Commercial client payment"
                 rows.append(make_row(pay_day, "sale", "sales", 3500, note, "yes"))
         return pd.DataFrame(rows)
+
+    # Combine all income and expenses 
     def print_raws():
             rng = np.random.default_rng(SEED)
             sales = daily_sales(rng,CLEANING)
@@ -342,6 +364,7 @@ def make_corner():
         "dip": (pd.Timestamp("2025-11-03"), pd.Timestamp("2025-11-23"), 0.7),
     }
 
+     # Generate daily sales with a temporary sales decline
 
     def daily_sales(rng,the_business):
         days = pd.date_range(START, END, freq="D")
@@ -351,6 +374,8 @@ def make_corner():
         for day in days:
             amount = the_business['base_sales'] * the_business["weekday_factor"].get(day.weekday()) * the_business["season_factor"].get(day.month, 1.0)
             amount = amount * rng.normal(1.0, the_business['sales_noise'])
+
+            # Apply temporary sales decline during the specified period
             if dip is not None and dip[0] <= day <= dip[1]:
                 amount = amount * dip[2]
        
@@ -363,6 +388,7 @@ def make_corner():
                 "recurring": "no",
             })
         return pd.DataFrame(rows)
+    # Generate recurring rent, payroll, and seasonally adjusted utilities
     def scheduled_expenses(the_business):
         rows = []
        
@@ -387,6 +413,8 @@ def make_corner():
 
         return pd.DataFrame(rows)
 
+    # Generate twice-weekly inventory purchases based on previous sales
+
     def weekly_supplies(sales, rng,  the_business):
     
         
@@ -404,7 +432,8 @@ def make_corner():
             if amount > 0:
                 rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
         return pd.DataFrame(rows)
-   
+
+    # Combine generated transactions
     def print_raws():
             rng = np.random.default_rng(SEED)
             sales = daily_sales(rng,CORNER)
@@ -442,7 +471,7 @@ def make_childcare():
         "family_leaves": (pd.Timestamp("2026-01-01"), 1),
     }
 
-
+    # Generate recurring operating expenses
     
     def scheduled_expenses(the_business):
         rows = []
@@ -464,28 +493,36 @@ def make_childcare():
             rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
 
         return pd.DataFrame(rows)
+
+    # Generate monthly tuition income based on enrolled families
+    
     def tuition_income(the_business):
         rows = []
         leaves = the_business.get("family_leaves")
         for day in pd.date_range(START, END, freq="MS"):
             families = the_business["families"]
+            # Reduce enrollment during summer months
             if day.month in (6, 7, 8):
                 families = the_business["summer_families"]
+
+            # Account for a family leaving the childcare center
             if leaves is not None and day >= leaves[0]:
                 families = families - leaves[1]
             rows.append(make_row(day, "sale", "sales", families * the_business["tuition"], "Monthly tuition", "yes"))
         return pd.DataFrame(rows)
+    # Generate irregular government subsidy payment
     def subsidy_income(rng, the_business):
         rows = []
         for first in pd.date_range(START, END, freq="MS"):
             # arrives on a different day each month, between the 8th and the 22nd
             pay_day = first + pd.Timedelta(days=int(rng.integers(7, 22)))
+            # Simulate a delayed subsidy payment in August 2025
             if first == pd.Timestamp("2025-08-01"):
                 pay_day = pay_day + pd.Timedelta(days=42)   
             if pay_day <= pd.Timestamp(END):
                 rows.append(make_row(pay_day, "sale", "other_income", the_business["subsidy"], "State subsidy payment", "no"))
         return pd.DataFrame(rows)
-    
+    # Combine tuition, subsidy, and operating expenses
     def print_raws():
             rng = np.random.default_rng(SEED)
             tuition = tuition_income(CHILDCARE)
@@ -529,7 +566,7 @@ def make_tailor():
         # sewing machine failure in month 6 (June 2025): date and cost
         "machine_failure": (pd.Timestamp("2025-06-10"), 900),
     }
-
+     # Generate daily sales with seasonal and wedding-season variations
     def daily_sales(rng, the_business):
         days = pd.date_range(START, END, freq="D")
         surge = the_business.get("surge")
@@ -541,6 +578,7 @@ def make_tailor():
                 * the_business["season_factor"].get(day.month, 1.0)
             )
             amount = amount * rng.normal(1.0, the_business["sales_noise"])
+            # Apply increased sales during the wedding-season period
             if surge is not None and surge[0] <= day <= surge[1]:
                 amount = amount * surge[2]
             rows.append({
@@ -552,7 +590,7 @@ def make_tailor():
                 "recurring": "no",
             })
         return pd.DataFrame(rows)
-
+    # Generate recurring rent, payroll, and utility expenses
     def scheduled_expenses(the_business):
         rows = []
         # Rent: first day of every month
@@ -569,6 +607,8 @@ def make_tailor():
             rows.append(make_row(pay_day, "expense", "utilities", the_business["utilities"], "Utilities", "yes"))
         return pd.DataFrame(rows)
 
+    # Calculate weekly fabric and thread expenses based on previous sales
+
     def weekly_supplies(sales, rng, the_business):
         sales = sales.copy()
         sales["date"] = pd.to_datetime(sales["date"])
@@ -579,7 +619,7 @@ def make_tailor():
             if amount > 0:
                 rows.append(make_row(day, "expense", the_business["supplies_category"], amount, the_business["supplies_note"], "no"))
         return pd.DataFrame(rows)
-
+    # Generate occasional small equipment purchases
     def small_equipment(rng):
         # a small tool purchase (scissors, needles, pressing cloth...) every two months
         rows = []
@@ -589,10 +629,11 @@ def make_tailor():
             rows.append(make_row(day, "expense", "equipment", amount, "Small equipment", "no"))
         return pd.DataFrame(rows)
 
+    # Add a one-time sewing machine replacement expense
     def machine_failure(the_business):
         day, cost = the_business["machine_failure"]
         return pd.DataFrame([make_row(day, "expense", "equipment", cost, "Sewing machine replacement", "no")])
-
+    # Combine all transactions
     def print_raws():
         rng = np.random.default_rng(SEED)
         sales = daily_sales(rng, TAILOR)
@@ -614,6 +655,7 @@ def make_tailor():
     return print_raws()
 
 def make_row(date, type_, category, amount, note, recurring):
+    # Standardize transaction structure across all business datasets
     return {
         "date": date.strftime("%Y-%m-%d"),
         "type": type_,
@@ -627,15 +669,22 @@ def make_row(date, type_, category, amount, note, recurring):
 all_rows,category,summary=make_corner()
 #make_childcare()
 def extract_csv(all_rows,business):
+    # Create the output directory if it does not already exist
     os.makedirs("data/synthetic", exist_ok=True)
 
+    # Remove the temporary monthly-summary column before exporting
+
     out = all_rows.drop(columns=["month"])   
+    # Build the output path using the business name
     path=f"data/synthetic/{business['name']}.csv"
+    # Write business settings as comment lines for the CSV parser
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(f"# opening_cash_balance={business['opening_cash']}\n")      
         f.write(f"# minimum_cash_cushion={business['cushion']}\n")      
         f.write("# currency=USD\n")
         f.write(f"# business_name={business['name']} \n")
+        
+        # Export transaction data without the DataFrame index
         out.to_csv(f, index=False)
 extract_csv(all_rows,category)
 

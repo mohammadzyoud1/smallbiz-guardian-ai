@@ -1,10 +1,11 @@
+import os
 import sys
 import tempfile
 import time
 import uuid
 from pathlib import Path
 from typing import Literal
-import os
+
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))

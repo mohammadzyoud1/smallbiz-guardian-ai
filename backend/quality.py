@@ -1,12 +1,16 @@
 import pandas as pd
 from parser import parse_file
 from scripts.validate import ALLOWED, rows_text
+
+
+# 1. Standardized Message Structure
 def message(code, **params):
     return {
         "code": code,
         "params": params
     }
 
+#  Validate Uploaded Transaction Data
 def validate(path):
     errors, warnings, info = [], [], []
     settings = {}
@@ -15,11 +19,13 @@ def validate(path):
     if not settings.get("opening_cash_balance"):
         errors.append(message("missing_opening_cash"))
 
+    # Include transaction-level validation problems from the parser.
     if problems:
         errors.extend(
             message("invalid_transaction", details=problem)
             for problem in problems
         )
+    # Check whether all required transaction columns exist.
     missing_cols = [c for c in ["date", "type", "category", "amount"] if c not in df.columns]
     if missing_cols:
         errors.append(message(
@@ -27,6 +33,9 @@ def validate(path):
         columns=", ".join(missing_cols)
     ))
         return errors, warnings, info
+
+    #  Validate Dates and Amounts
+    # Convert dates using a strict format.
 
     dates = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
     bad = dates.isna()
@@ -36,8 +45,10 @@ def validate(path):
         count=int(bad.sum()),
         rows=rows_text(bad)
     ))
-
+    # Convert amounts to numbers; invalid values become NaN.
     amounts = pd.to_numeric(df["amount"], errors="coerce")
+
+    
     bad = amounts.isna()
     if bad.any():
         errors.append(message(
@@ -45,6 +56,7 @@ def validate(path):
             count=int(bad.sum()),
             rows=rows_text(bad)
         ))
+    # Reject negative transaction amounts.
     bad = amounts < 0
     if bad.any():
         errors.append(message(
@@ -52,7 +64,9 @@ def validate(path):
             count=int(bad.sum()),
             rows=rows_text(bad)
         ))
+    # Validate Transaction Types and Categories
 
+    # Only sales and expenses are accepted transaction types.
     bad = ~df["type"].isin(["sale", "expense"])
     if bad.any():
         errors.append(message(
@@ -60,7 +74,7 @@ def validate(path):
             count=int(bad.sum()),
             rows=rows_text(bad)
         ))
-
+    # Unknown categories generate warnings rather than errors.
     bad = ~df["category"].isin(ALLOWED)
     if bad.any():
         warnings.append(message(
@@ -68,7 +82,7 @@ def validate(path):
             count=int(bad.sum()),
             rows=rows_text(bad)
         ))
-
+    # Detect rows that are exact duplicates across all columns.
     dup = df.duplicated()
     if dup.any():
         warnings.append(message(
@@ -76,10 +90,12 @@ def validate(path):
             count=int(dup.sum()),
             rows=rows_text(dup)
         ))
-   
+    # Check Date Range and Historical Coverage
     good = dates.dropna()
     if len(good) > 0:
           middle = good.median()
+
+          # Flag dates more than three years (1095 days) away  from the median date as potential outliers.
           far = (good - middle).abs() > pd.Timedelta(days=1095)     
           if far.any():
               errors.append(message(
@@ -92,6 +108,7 @@ def validate(path):
               good = good[~far]
     if len(good) > 0:
         first, last = good.min(), good.max()
+        # Calculate the approximate number of weeks between the first and last valid transaction dates.
         weeks = (last - first).days / 7
         info.append(message(
             "data_coverage",
@@ -99,6 +116,8 @@ def validate(path):
             last=last.date().isoformat(),
             weeks=round(weeks)
         ))
+
+         # Require at least 16 weeks of history. Recommend 26 weeks for more reliable forecasting.
         if weeks < 16:
             errors.append(message(
                 "insufficient_history",
@@ -109,6 +128,8 @@ def validate(path):
                 "short_history",
                 recommended=26
             ))
+
+        # Convert transaction dates into weekly periods.
         have = set(good.dt.to_period("W"))
         missing = [w for w in pd.period_range(first, last, freq="W") if w not in have]
         if missing:
@@ -120,13 +141,17 @@ def validate(path):
 
     return errors, warnings, info
 
-
+#  Generate the Overall Quality Report
 def quality_report(path):
     errors, warnings, info = validate(path)
     weeks = None
+
+    # Retrieve the historical coverage value from the structured information messages.
     for line in info:
         if "weeks" in line:
             weeks = int(line.split("(")[1].split(" ")[0])
+
+    # Determine whether the uploaded dataset is ready for forecasting.
     verdict = message("unknown")
     if weeks is not None:
         if weeks < 16:

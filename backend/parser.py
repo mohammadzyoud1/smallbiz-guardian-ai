@@ -3,24 +3,35 @@ from pydantic import ValidationError
 from schema import Transaction
 
 
+# 1. Parse and Validate an Uploaded File
 def parse_file(path):
     settings={}
+    
+    #Read an Excel File
     if str(path).endswith(".xlsx"):
+        # Read transaction records from the "transactions" worksheet. Read all values as strings and replace missing cells with empty strings.
         df = pd.read_excel(path, sheet_name="transactions", dtype=str).fillna("")
-        df["date"] = df["date"].str[:10]          
+        df["date"] = df["date"].str[:10] 
+        # Read business settings from the "settings" worksheet.         
         settings_df = pd.read_excel(path, sheet_name="settings", dtype=str).fillna("")
 
+        # Convert the settings worksheet into a dictionary.
         settings = dict(zip(
             settings_df["key"].str.strip(),
             settings_df["value"].str.strip()
         ))
+    # Read a CSV File        
     else:
         with open(path, encoding="utf-8-sig") as f:
             for line in f:
+                # Lines beginning with "#" contain business settings.
                 if line.startswith("#"):
+                    # Split each setting into its key and value using "=" and store them.
                     key, _, value = line[1:].strip().partition("=")
                     settings[key.strip()] = value.strip()
         df = pd.read_csv(path, comment="#", dtype=str).fillna("")
+
+    # Validate Transaction Records        
     good, problems = [], []
     for i, row in df.iterrows():
         try:

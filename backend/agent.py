@@ -50,29 +50,57 @@ def run_tool(name, arguments, weekly, cushion):
 
 
 def ask(provider, question, weekly, cushion, max_rounds=7):
+
+    # Initialize the conversation with the system instructions and user question
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": question},
     ]
+
+    # Store tool results and track the total number of tokens used
     tool_outputs, tokens = [], 0
+    # Allow multiple rounds of model responses and tool execution
     for _ in range(max_rounds):
+
+        
+        # Send the conversation and available tools to the language model
         reply = provider.chat(messages, TOOL_SPECS)
+
+        # Display the current round and the tools requested by the model
         print("   round", _, [c["name"] + str(c["arguments"]) for c in reply["tool_calls"]])
+
+        
         tokens += reply["tokens"]
+
+        # If the model does not request a tool, return its final answer
         if not reply["tool_calls"]:
             return {"answer": reply["text"], "tool_outputs": tool_outputs, "tokens": tokens}
+
+        # Save the assistant message containing its requested tool calls
         messages.append({
             "role": "assistant", "content": reply["text"],
+
+            # Convert tool requests into the format expected by the provider
             "tool_calls": [
                 {"id": c["id"], "type": "function","function": {"name": c["name"], "arguments": json.dumps(c["arguments"])}}
                 for c in reply["tool_calls"]],
         })
+
+        # Execute each requested tool and send its result back to the model
         for call in reply["tool_calls"]:
             try:
+
+                # Run the requested function with the supplied arguments
                 result = run_tool(call["name"], call["arguments"], weekly, cushion)
             except (ValueError, KeyError) as error:
                 result = {"error": f"Tool failed: {error}"}
+
+            # Save the tool result for the final response
             tool_outputs.append(result)
-            messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})  
+
+            # Add the tool result to the conversation history
+            messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
+              
+    # Return a fallback response if the model cannot finish within the allowed rounds            
     return {"answer": "I could not finish that question. Please try asking it differently.",
             "tool_outputs": tool_outputs, "tokens": tokens}
